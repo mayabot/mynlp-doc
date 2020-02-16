@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sample Document on Mynlp文档</title>
-    <link>https://example.com/sample/</link>
+    <link>https://mayabot.github.io/mynlp-doc/sample/</link>
     <description>Recent content in Sample Document on Mynlp文档</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 17 Oct 2017 15:26:15 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/sample/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mayabot.github.io/mynlp-doc/sample/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Build-in Shortcodes</title>
-      <link>https://example.com/sample/build-in-shortcodes/</link>
+      <link>https://mayabot.github.io/mynlp-doc/sample/build-in-shortcodes/</link>
       <pubDate>Tue, 17 Oct 2017 15:26:15 +0000</pubDate>
       
-      <guid>https://example.com/sample/build-in-shortcodes/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/sample/build-in-shortcodes/</guid>
       <description>See https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes
 figure   2 People Sitting With View of Yellow Flowers during Daytime   gist  highlight &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Data.Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; instagram    View this post on Instagram        #Talitha #Getty #yacht in #fjærland #fjærlandsfjorden #sognefjorden #mundal #norway #landscape #panorama #travel #instagoodmyphoto #justgoshoot #peoplescreatives #visualsoflife #photography #photoshoot #photodaily #photogram #instagood #picoftheday #fjærland #photooftheday #pentax #nrksf #sognavis</description>
     </item>
     
     <item>
       <title>Custom Shortcodes</title>
-      <link>https://example.com/sample/custom-shortcodes/</link>
+      <link>https://mayabot.github.io/mynlp-doc/sample/custom-shortcodes/</link>
       <pubDate>Tue, 17 Oct 2017 15:26:15 +0000</pubDate>
       
-      <guid>https://example.com/sample/custom-shortcodes/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/sample/custom-shortcodes/</guid>
       <description>Alert panel Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
     <item>
       <title>Table of Contents</title>
-      <link>https://example.com/sample/table-of-contents/</link>
+      <link>https://mayabot.github.io/mynlp-doc/sample/table-of-contents/</link>
       <pubDate>Tue, 17 Oct 2017 15:26:15 +0000</pubDate>
       
-      <guid>https://example.com/sample/table-of-contents/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/sample/table-of-contents/</guid>
       <description>The TableOfContents field set to true in your content’s front matter will render a table of contents.
 TableOfContents: true Setting the built-in .TableOfContents variables can configure what heading levels you want to include in TOC. See the built-in .TableOfContents variables settings
 Section 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</description>

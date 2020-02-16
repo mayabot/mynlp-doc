@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>基本 on Mynlp文档</title>
-    <link>https://example.com/basics/</link>
+    <link>https://mayabot.github.io/mynlp-doc/basics/</link>
     <description>Recent content in 基本 on Mynlp文档</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 Feb 2020 11:56:37 +0800</lastBuildDate>
     
-	<atom:link href="https://example.com/basics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mayabot.github.io/mynlp-doc/basics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>First Content</title>
-      <link>https://example.com/basics/first-content/</link>
+      <link>https://mayabot.github.io/mynlp-doc/basics/first-content/</link>
       <pubDate>Sat, 15 Feb 2020 11:59:34 +0800</pubDate>
       
-      <guid>https://example.com/basics/first-content/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/basics/first-content/</guid>
       <description>bi </description>
     </item>
     

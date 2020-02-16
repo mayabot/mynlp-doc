@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting Started on Mynlp文档</title>
-    <link>https://example.com/getting-started/</link>
+    <link>https://mayabot.github.io/mynlp-doc/getting-started/</link>
     <description>Recent content in Getting Started on Mynlp文档</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 17 Oct 2017 15:26:15 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mayabot.github.io/mynlp-doc/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Installation</title>
-      <link>https://example.com/getting-started/installation/</link>
+      <link>https://mayabot.github.io/mynlp-doc/getting-started/installation/</link>
       <pubDate>Tue, 17 Oct 2017 15:26:15 +0000</pubDate>
       
-      <guid>https://example.com/getting-started/installation/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/getting-started/installation/</guid>
       <description>Download Hugo theme If you have git installed, you can do the following at the command-line-interface within the Hugo directory:
 cd themes git clone https://github.com/thingsym/hugo-theme-techdoc.git For more information read the Hugo documentation.
 Configure You may specify options in config.toml (or config.yaml/config.json) of your site to make use of this theme&amp;rsquo;s features.
@@ -27,10 +27,10 @@ Preview site To preview your site, run Hugo&amp;rsquo;s built-in local server.</
     
     <item>
       <title>Configuration</title>
-      <link>https://example.com/getting-started/configuration/</link>
+      <link>https://mayabot.github.io/mynlp-doc/getting-started/configuration/</link>
       <pubDate>Tue, 17 Oct 2017 15:26:15 +0000</pubDate>
       
-      <guid>https://example.com/getting-started/configuration/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/getting-started/configuration/</guid>
       <description>You may specify options in config.toml (or config.yaml/config.json) of your site to make use of this theme’s features.
 For an example of config.toml, see config.toml in exampleSite.
 Params # Souce Code repository section description = &amp;quot;put your description&amp;quot; github_repository = &amp;quot;https://github.com/thingsym/hugo-theme-techdoc&amp;quot; version = &amp;quot;0.7.0&amp;quot; # Documentation repository section # documentation repository (set edit link to documentation repository) github_doc_repository = &amp;quot;https://github.com/thingsym/hugo-theme-techdoc&amp;quot; # Analytic section google_analytics_id = &amp;quot;&amp;quot; # Your Google Analytics tracking id tag_manager_container_id = &amp;quot;&amp;quot; # Your Google Tag Manager container id google_site_verification = &amp;quot;&amp;quot; # Your Google Site Verification for Search Console # Theme settings section # Theme color custom_font_color = &amp;quot;&amp;quot; custom_background_color = &amp;quot;&amp;quot; # Documentation Menu section # Menu style settings menu_style = &amp;quot;open-menu&amp;quot; # &amp;quot;open-menu&amp;quot; or &amp;quot;slide-menu&amp;quot; # Date format dateformat = &amp;quot;&amp;quot; # default &amp;quot;2 Jan 2006&amp;quot; # See the format reference https://gohugo.</description>
@@ -38,10 +38,10 @@ Params # Souce Code repository section description = &amp;quot;put your descript
     
     <item>
       <title>Screenshot</title>
-      <link>https://example.com/getting-started/screenshot/</link>
+      <link>https://mayabot.github.io/mynlp-doc/getting-started/screenshot/</link>
       <pubDate>Sat, 26 Oct 2019 15:26:15 +0000</pubDate>
       
-      <guid>https://example.com/getting-started/screenshot/</guid>
+      <guid>https://mayabot.github.io/mynlp-doc/getting-started/screenshot/</guid>
       <description>Theme color Menu style Open Menu Slide Menu Edit link </description>
     </item>
     
