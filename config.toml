@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://mayabot.github.io/mynlp-doc/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
