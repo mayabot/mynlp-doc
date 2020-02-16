@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Custom Shortcodes - Mynlp文档</title>
+<meta name="description" content="calling custom Shortcodes into your content files.">
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://example.comindex.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://example.com/sample/custom-shortcodes/">
+<link rel="stylesheet" href="https://example.com/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://example.com/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://example.com/js/bundle.js"></script><style>
+:root {--custom-font-color: white;--custom-background-color: #333;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+}
+</style>
+<meta property="og:title" content="Custom Shortcodes" />
+<meta property="og:description" content="calling custom Shortcodes into your content files." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/sample/custom-shortcodes/" />
+<meta property="article:published_time" content="2017-10-17T15:26:15+00:00" />
+<meta property="article:modified_time" content="2017-10-17T15:26:15+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Custom Shortcodes"/>
+<meta name="twitter:description" content="calling custom Shortcodes into your content files."/>
+<meta itemprop="name" content="Custom Shortcodes">
+<meta itemprop="description" content="calling custom Shortcodes into your content files.">
+<meta itemprop="datePublished" content="2017-10-17T15:26:15&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-17T15:26:15&#43;00:00" />
+<meta itemprop="wordCount" content="726">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Mynlp文档</h1>
+
+ <span class="version">Version 3.x</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/">Mynlp文档</a></li>
+<li><a href="/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">Blog</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>Custom Shortcodes</h1>
+<h2 id="alert-panel">Alert panel</h2>
+<div class="panel panel-primary"><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<h3 id="alert-panel-using-html">Alert panel using HTML</h3>
+<div class="panel panel-primary"><div class="panel-body">
+
+<strong>Lorem ipsum dolor sit amet</strong>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href="https://github.com/thingsym/hugo-theme-techdoc">Ut enim ad minim venia</a>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<strong>Lorem ipsum dolor sit amet</strong>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href="https://github.com/thingsym/hugo-theme-techdoc">Ut enim ad minim venia</a>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+</div>
+</div>
+
+<h3 id="alert-panel-with-titles-and-colors">Alert panel with titles and colors</h3>
+<div class="panel panel-primary"><div class="panel-header">
+<h3>primary</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<div class="panel panel-notice"><div class="panel-header">
+<h3>notice</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<div class="panel panel-success"><div class="panel-header">
+<h3>success</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<div class="panel panel-caution"><div class="panel-header">
+<h3>caution</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<div class="panel panel-warning"><div class="panel-header">
+<h3>warning</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<div class="panel panel-danger"><div class="panel-header">
+<h3>danger</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<h3 id="alert-panel-with-font-awesome">Alert panel with Font Awesome</h3>
+<div class="panel panel-danger"><div class="panel-header">
+<h3><i class="fas fa-download"></i> danger</h3>
+</div><div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+<h2 id="button">Button</h2>
+<a href="#" class="button button-primary">
+primary</a>
+
+<a href="#" class="button button-success">
+success</a>
+
+<a href="#" class="button button-caution">
+caution</a>
+
+<a href="#" class="button button-warning">
+warning</a>
+
+<a href="#" class="button button-danger">
+danger</a>
+
+<h4 id="button-with-font-awesome">Button with Font Awesome</h4>
+<a href="#" class="button button-primary">
+<i class="fas fa-download"></i> Download</a>
+
+<a href="#" class="button button-success">
+<i class="fas fa-cloud-download-alt"></i> Download</a>
+
+<div class="edit-meta">
+Last updated on 2017-10-17
+
+
+<br>
+Published on 2017-10-17
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://example.com/sample/build-in-shortcodes/" title="Build-in Shortcodes"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Build-in Shortcodes</a>
+<a class="nav nav-next" href="https://example.com/sample/table-of-contents/" title="Table of Contents">Next - Table of Contents <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://example.com">首页</a></li>
+
+<li class=""><a href="https://example.com/basics/"><b>. </b>基本</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://example.com/basics/second-content/">Second Content</a>
+  
+</li>
+<li class=""><a href="https://example.com/basics/first-content/">First Content</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://example.com/getting-started/">Getting Started</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://example.com/getting-started/installation/">Installation</a></li>
+<li class=""><a href="https://example.com/getting-started/configuration/">Configuration</a></li>
+<li class=""><a href="https://example.com/getting-started/screenshot/">Screenshot</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://example.com/sample/">Sample Document</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://example.com/sample/build-in-shortcodes/">Build-in Shortcodes</a></li>
+<li class="active"><a href="https://example.com/sample/custom-shortcodes/">Custom Shortcodes</a></li>
+<li class=""><a href="https://example.com/sample/table-of-contents/">Table of Contents</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://example.com/chapter1/">Chapter 1</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://example.com/chapter1/1/">Chapter 1-1</a></li>
+<li class=""><a href="https://example.com/chapter1/2/">Chapter 1-2</a></li>
+<li class=""><a href="https://example.com/chapter1/3/">Chapter 1-3</a></li>
+<li class=""><a href="https://example.com/chapter1/4/">Chapter 1-4</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://example.com/chapter2/">Chapter 2 (weighted)</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://example.com/chapter2/3/">Chapter 2-3 (weight: 10)</a></li>
+<li class=""><a href="https://example.com/chapter2/4/">Chapter 2-4 (weight: 20)</a></li>
+<li class=""><a href="https://example.com/chapter2/2/">Chapter 2-2 (weight: 30)</a></li>
+<li class=""><a href="https://example.com/chapter2/1/">Chapter 2-1 (weight: 40)</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://example.com/chapter3/">Chapter 3 (hierarchized)</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://example.com/chapter3/1/">Chapter 3-1</a></li>
+
+<li class=""><a href="https://example.com/chapter3/chapter3-2/">Chapter 3-2</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://example.com/chapter3/chapter3-2/1/">Chapter 3-2-1</a></li>
+<li class=""><a href="https://example.com/chapter3/chapter3-2/2/">Chapter 3-2-2</a></li>
+<li class=""><a href="https://example.com/chapter3/chapter3-2/3/">Chapter 3-2-3</a></li>
+<li class=""><a href="https://example.com/chapter3/chapter3-2/4/">Chapter 3-2-4</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://example.com/chapter3/3/">Chapter 3-3</a></li>
+<li class=""><a href="https://example.com/chapter3/4/">Chapter 3-4</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>
