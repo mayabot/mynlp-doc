@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>中文分词API示例 - Mynlp文档</title>
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script><style>
+:root {--custom-font-color: white;--custom-background-color: #333;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+
+  .sidebar .active{
+    font-weight: bold;
+  }
+</style>
+<meta property="og:title" content="中文分词API示例" />
+<meta property="og:description" content="Kotlin: println(&#34;mynlp是mayabot开源的中文NLP工具包。&#34;.lexer().toList()) Java: Lexer lexer = Lexers.coreBuilder() //c" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/segment/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="中文分词API示例"/>
+<meta name="twitter:description" content="Kotlin: println(&#34;mynlp是mayabot开源的中文NLP工具包。&#34;.lexer().toList()) Java: Lexer lexer = Lexers.coreBuilder() //c"/>
+<meta itemprop="name" content="中文分词API示例">
+<meta itemprop="description" content="Kotlin: println(&#34;mynlp是mayabot开源的中文NLP工具包。&#34;.lexer().toList()) Java: Lexer lexer = Lexers.coreBuilder() //c">
+
+<meta itemprop="wordCount" content="191">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Mynlp文档</h1>
+
+ <span class="version">Version 3.x</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">Blog</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>中文分词API示例</h1>
+<p>Kotlin:</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="n">println</span><span class="p">(</span><span class="s">&#34;mynlp是mayabot开源的中文NLP工具包。&#34;</span><span class="p">.</span><span class="n">lexer</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">toList</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>Java:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">Lexers</span><span class="o">.</span><span class="na">coreBuilder</span><span class="o">(</span><span class="o">)</span>      <span class="c1">//core分词构建器
+</span><span class="c1"></span>                     <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>         <span class="c1">//开启词性
+</span><span class="c1"></span>                     <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span>  <span class="c1">//开启人名
+</span><span class="c1"></span>                     <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>          <span class="c1">// 创建定制词法分析对象
+</span><span class="c1"></span>                     
+<span class="n">Sentence</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">lexer</span><span class="o">.</span><span class="na">scan</span><span class="o">(</span><span class="s">&#34;mynlp是mayabot开源的中文NLP工具包。&#34;</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">toList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[mynlp/x, 是/v, mayabot/x, 开源/v, 的/u, 中文/nz, nlp/x, 工具包/n, 。/w]
+</code></pre></div><div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 安装</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">中文分词API示例</a></li>
+</ul>
+  
+</li>
+
+
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

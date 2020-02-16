@@ -15,13 +15,24 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
 <script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script><style>
 :root {--custom-font-color: white;--custom-background-color: #333;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
 }
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+
+  .sidebar .active{
+    font-weight: bold;
+  }
 </style>
 <meta property="og:title" content="Mynlp文档首页" />
 <meta property="og:description" content="一个高性能、模块化、可扩展的中文NLP工具包（中文分词 词性标注 命名实体识别 新词发现 文本分类 拼音简繁转换）" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://mayabot.github.io/mynlp-doc/" />
-<meta property="og:updated_time" content="2020-02-15T11:59:34+08:00" />
+<meta property="og:updated_time" content="2017-10-17T15:26:15+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Mynlp文档首页"/>
 <meta name="twitter:description" content="一个高性能、模块化、可扩展的中文NLP工具包（中文分词 词性标注 命名实体识别 新词发现 文本分类 拼音简繁转换）"/>
@@ -42,23 +53,213 @@
 </nav>
 </div>
 <div class="content-container">
-<main><h1 id="hugo-techdoc-theme">Hugo Techdoc Theme</h1>
-<h2 id="the-techdoc-is-a-hugo-theme-for-technical-documentation">The Techdoc is a Hugo Theme for technical documentation.</h2>
-<h2 id="features">Features</h2>
+<main><p>mynlp是一个开源高性能、模块化、可扩展的中文NLP工具包。</p>
+<h3 id="设计目标">设计目标：</h3>
 <ul>
-<li>Modern, Simple layout</li>
-<li>Responsive web design</li>
-<li>Documentation menu (Select <a href="getting-started/screenshot/#menu-style">Menu style</a>)</li>
-<li><a href="sample/table-of-contents/">Table Of Contents</a> for the page (selective)</li>
-<li><a href="getting-started/screenshot/#theme-color">Theme color</a></li>
-<li><a href="getting-started/screenshot/#edit-link">Edit link</a> to documentation repository</li>
-<li><a href="sample/custom-shortcodes/">Custom Shortcodes</a></li>
-<li>Analytics with Google Analytics, Google Tag Manager</li>
+<li>企业级</li>
+<li>高性能</li>
+<li>模块化</li>
+<li>可扩展</li>
+<li>多场景</li>
+<li>柔性API</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="n">System</span><span class="p">.</span><span class="k">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
-</code></pre></div><nav class="pagination"><a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/basics/" title="基本">Next - 基本 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+<h2 id="getting-started">Getting Started</h2>
+<p>只需要导入maven依赖，无需配置和额外资源下载。</p>
+<h3 id="requirements">Requirements</h3>
+<p>您需要 JAVA1.8+ 运行环境</p>
+<h3 id="installation">Installation</h3>
+<p>mynlp多个功能被划分在不同的模块中，下面演示分词模块：</p>
+<p>GRADLE</p>
+<pre><code>compile 'com.mayabot.mynlp:mynlp-segment:3.0.1'
+</code></pre><p>或者MAVEN</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-segment<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.0.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th>模块（artifactId）</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mynlp-core</td>
+<td>基础功能 Guice、logger、资源、基础数据结构和算法</td>
+</tr>
+<tr>
+<td>mynlp-perceptron</td>
+<td>通用序列标注感知机</td>
+</tr>
+<tr>
+<td>mynlp-segment</td>
+<td>分词</td>
+</tr>
+<tr>
+<td>mynlp-classification</td>
+<td>文本分类</td>
+</tr>
+<tr>
+<td>mynlp-lucene</td>
+<td>lucene 分析器接口实现</td>
+</tr>
+<tr>
+<td>mynlp-pinyin</td>
+<td>文字转拼音</td>
+</tr>
+<tr>
+<td>mynlp-summary</td>
+<td>文本摘要</td>
+</tr>
+<tr>
+<td>mynlp-transform</td>
+<td>繁简体互转</td>
+</tr>
+</tbody>
+</table>
+<h3 id="中文分词示例">中文分词示例</h3>
+<p>Kotlin:</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="n">println</span><span class="p">(</span><span class="s">&#34;mynlp是mayabot开源的中文NLP工具包。&#34;</span><span class="p">.</span><span class="n">lexer</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">toList</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>Java:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">Lexers</span><span class="o">.</span><span class="na">coreBuilder</span><span class="o">(</span><span class="o">)</span>      <span class="c1">//core分词构建器
+</span><span class="c1"></span>                     <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>         <span class="c1">//开启词性
+</span><span class="c1"></span>                     <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span>  <span class="c1">//开启人名
+</span><span class="c1"></span>                     <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>          <span class="c1">// 创建定制词法分析对象
+</span><span class="c1"></span>                     
+<span class="n">Sentence</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">lexer</span><span class="o">.</span><span class="na">scan</span><span class="o">(</span><span class="s">&#34;mynlp是mayabot开源的中文NLP工具包。&#34;</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">toList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[mynlp/x, 是/v, mayabot/x, 开源/v, 的/u, 中文/nz, nlp/x, 工具包/n, 。/w]
+</code></pre></div><h2 id="添加微信公众号加入微信交流群获取最新nlp相关文章和动态">添加微信公众号：加入微信交流群、获取最新NLP相关文章和动态。</h2>
+<p><img src="https://cdn.mayabot.com/mynlp/mayajimi.jpg" alt="weixin"></p>
+<h2 id="包含功能和资源如下">包含功能和资源如下：</h2>
+<ul>
+<li>
+<p>中文分词</p>
+<ul>
+<li>
+<p>CORE分词</p>
+<ul>
+<li>二元语言模型 + viterbi解码算法 + 基础规则（数字、英文、日期..。_</li>
+<li>高性能：速度200万+字/秒(<em>2.6GHz Intel i7</em>)</li>
+</ul>
+</li>
+<li>
+<p>感知机分词</p>
+<p>基于感知机序列标注算法 + 基础规则。_</p>
+</li>
+<li>
+<p>CRF分词</p>
+<p><em>高性能CRF解码器 + 基础规则。</em></p>
+</li>
+<li>
+<p>人名识别</p>
+<p><em>基于感知机实现，高准确率，高性能，自动排除歧义。</em></p>
+</li>
+<li>
+<p>NER命名实体识别</p>
+</li>
+<li>
+<p>自定义功能</p>
+<p><em>自定义词库、分词纠错</em></p>
+</li>
+<li>
+<p>柔性API和PIPELINE设计模式</p>
+<p><em>自由组合和扩展分词逻辑需求</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>词性标注</p>
+<p><em>基于感知机的词性标注</em></p>
+</li>
+<li>
+<p>拼音转换</p>
+<p><em>文字转拼音，好用的API</em></p>
+</li>
+<li>
+<p>文本分类</p>
+<p><em>基于<a href="https://github.com/mayabot/fastText4j">fastText</a> Java原生实现</em></p>
+</li>
+<li>
+<p>简繁体转换</p>
+</li>
+<li>
+<p>感知机通用接口</p>
+<p><em>提供一个通用的感知机基础API</em></p>
+</li>
+<li>
+<p>文本摘要</p>
+<p><em>简单的文本摘要实现</em></p>
+</li>
+<li>
+<p>基础架构</p>
+<ul>
+<li>基于GUICE的IOC实现可插拔的组件开发</li>
+<li>高性能、易扩展的基础数据结构</li>
+</ul>
+</li>
+<li>
+<p>词典和语料库资源</p>
+<ul>
+<li>二元模型
+<ul>
+<li>二元模型词数量达20万+</li>
+<li>二元接续词配对数量485万+(Hanlp对应资源大概290万+)</li>
+</ul>
+</li>
+<li>感知机模型
+<ul>
+<li>训练语料库字数7000万+</li>
+</ul>
+</li>
+<li>词性标注
+<ul>
+<li>训练语料库字数3000万+</li>
+</ul>
+</li>
+<li>人名识别
+<ul>
+<li>训练语料库字数3000万+</li>
+</ul>
+</li>
+<li>地名、组织机构名
+<ul>
+<li>训练语料库字数3000万+</li>
+</ul>
+</li>
+<li>语料库来源
+<ul>
+<li>公开语料库
+<ul>
+<li>收集的互联网资源</li>
+</ul>
+</li>
+<li>自建语料库
+<ul>
+<li>基础数据为人民日报2014全年内容，通过Hanlp、中科院等多种分词器自动切分对比差异，再经过50人月时间修复、校验
+后获得的分词语料库。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="声明和致谢">声明和致谢</h2>
+<p>早期在使用ansj和hanlp过程中，遇到很多问题无法解决和扩展，mynlp开发之初借鉴了算法实现，通过多次迭代和项目需求驱动实践，逐渐发展为目前自有的架构体系。
+也向HanLP和ansj在中文NLP开源中做出的贡献和努力致敬！</p>
+<p>mynlp项目参考了以下项目：</p>
+<ul>
+<li><a href="https://github.com/hankcs/HanLP">HanLP</a></li>
+<li><a href="https://github.com/NLPchina/ansj_seg">ansj_seg</a></li>
+</ul>
+<nav class="pagination"><a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/" title="Getting Started">Next - Getting Started <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><div class="edit-meta">
-Last updated on 2020-02-15
+Last updated on 2017-10-17
 
 
 <br></div><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
@@ -69,80 +270,16 @@ Last updated on 2020-02-15
 <ul>
 <li class="active"><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/basics/"><b>. </b>基本</a>
-  
-<ul class="sub-menu">
-
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/basics/second-content/">Second Content</a>
-  
-</li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/basics/first-content/">First Content</a></li>
-</ul>
-  
-</li>
-
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">Installation</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/configuration/">Configuration</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/screenshot/">Screenshot</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">中文分词API示例</a></li>
 </ul>
   
 </li>
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/sample/">Sample Document</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/sample/build-in-shortcodes/">Build-in Shortcodes</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/sample/custom-shortcodes/">Custom Shortcodes</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/sample/table-of-contents/">Table of Contents</a></li>
-</ul>
-  
-</li>
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter1/">Chapter 1</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter1/1/">Chapter 1-1</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter1/2/">Chapter 1-2</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter1/3/">Chapter 1-3</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter1/4/">Chapter 1-4</a></li>
-</ul>
-  
-</li>
-
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter2/">Chapter 2 (weighted)</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter2/3/">Chapter 2-3 (weight: 10)</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter2/4/">Chapter 2-4 (weight: 20)</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter2/2/">Chapter 2-2 (weight: 30)</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter2/1/">Chapter 2-1 (weight: 40)</a></li>
-</ul>
-  
-</li>
-
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/">Chapter 3 (hierarchized)</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/1/">Chapter 3-1</a></li>
-
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/">Chapter 3-2</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/1/">Chapter 3-2-1</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/2/">Chapter 3-2-2</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/3/">Chapter 3-2-3</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/4/">Chapter 3-2-4</a></li>
-</ul>
-  
-</li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/3/">Chapter 3-3</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/chapter3/4/">Chapter 3-4</a></li>
-</ul>
-  
-</li>
 </ul>
 </nav>
 

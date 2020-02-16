@@ -3,22 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/basics/</loc>
-    <lastmod>2020-02-15T11:56:37+08:00</lastmod>
+    <loc>https://mayabot.github.io/mynlp-doc/getting-started/installation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/getting-started/segment/</loc>
   </url>
   
   <url>
     <loc>https://mayabot.github.io/mynlp-doc/getting-started/</loc>
-    <lastmod>2018-12-08T15:26:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://mayabot.github.io/mynlp-doc/sample/build-in-shortcodes/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter2/3/</loc>
     <lastmod>2017-10-17T15:26:15+00:00</lastmod>
   </url>
   
@@ -28,7 +25,7 @@
   </url>
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/getting-started/installation/</loc>
+    <loc>https://mayabot.github.io/mynlp-doc/sample/table-of-contents/</loc>
     <lastmod>2017-10-17T15:26:15+00:00</lastmod>
   </url>
   
@@ -38,122 +35,7 @@
   </url>
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/sample/table-of-contents/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter2/4/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/getting-started/configuration/</loc>
-    <lastmod>2019-10-26T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/getting-started/screenshot/</loc>
-    <lastmod>2019-10-26T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter2/2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter2/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/basics/second-content/</loc>
-    <lastmod>2020-02-15T11:59:35+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/basics/first-content/</loc>
-    <lastmod>2020-02-15T11:59:34+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mayabot.github.io/mynlp-doc/</loc>
-    <lastmod>2020-02-15T11:59:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter1/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter1/2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter1/3/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter1/4/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/1/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/2/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/3/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/chapter3-2/4/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/3/</loc>
-    <lastmod>2017-10-17T15:26:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/chapter3/4/</loc>
     <lastmod>2017-10-17T15:26:15+00:00</lastmod>
   </url>
   
