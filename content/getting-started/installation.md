@@ -1,35 +1,30 @@
 ---
-title: "Installation"
-date: 2017-10-17T15:26:15Z
+title: "安装"
 draft: false
-weight: 10
+weight: 1
 ---
+mynlp多个功能被划分在不同的模块中，下面演示分词模块：
 
-## Download Hugo theme
-
-If you have git installed, you can do the following at the command-line-interface within the Hugo directory:
-
+GRADLE
 ```
-cd themes
-git clone https://github.com/thingsym/hugo-theme-techdoc.git
+compile 'com.mayabot.mynlp:mynlp-segment:3.0.1'
 ```
-
-For more information read [the Hugo documentation](https://gohugo.io/themes/installing-and-using-themes/).
-
-## Configure
-
-You may specify options in config.toml (or config.yaml/config.json) of your site to make use of this theme's features.
-
-For an example of `config.toml`, see [config.toml](https://github.com/thingsym/hugo-theme-techdoc/blob/master/exampleSite/config.toml) in exampleSite.
-
-See [the Configuration documentation](../configuration/).
-
-## Preview site
-
-To preview your site, run Hugo's built-in local server.
-
-```
-hugo server -t hugo-theme-techdoc
+或者MAVEN
+```xml
+<dependency>
+  <groupId>com.mayabot.mynlp</groupId>
+  <artifactId>mynlp-segment</artifactId>
+  <version>3.0.1</version>
+</dependency>
 ```
 
-Browse site on http://localhost:1313
+模块（artifactId） | 功能 
+------ | ------------
+mynlp-core | 基础功能 Guice、logger、资源、基础数据结构和算法
+mynlp-perceptron | 通用序列标注感知机
+mynlp-segment | 分词
+mynlp-classification | 文本分类
+mynlp-lucene | lucene 分析器接口实现
+mynlp-pinyin | 文字转拼音
+mynlp-summary | 文本摘要
+mynlp-transform | 繁简体互转

@@ -3,5 +3,16 @@
   {{- with .Site.Params.custom_font_color }}--custom-font-color: {{ . }};{{ end -}}
   {{- with .Site.Params.custom_background_color }}--custom-background-color: {{ . }};{{ end -}}
   font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
 }
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+
+  .sidebar .active{
+    font-weight: bold;
+  }
 </style>

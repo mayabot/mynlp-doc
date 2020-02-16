@@ -58,7 +58,8 @@ enableMissingTranslationPlaceholders = false
         "blog",
         "entry",
         "post",
-        "posts"
+        "posts",
+        "sample"
     ]
 
 # Global menu section
