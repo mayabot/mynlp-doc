@@ -3,10 +3,10 @@
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Getting Started - Mynlp文档</title>
+<title>资源加载器 - Mynlp文档</title>
 <meta name="generator" content="Hugo 0.64.1" />
 <link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
-<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/getting-started/">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
 <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
@@ -58,16 +58,22 @@ table,.highlight{
 }
 
 </style>
-<meta property="og:title" content="Getting Started" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/" />
+<meta property="og:title" content="资源加载器" />
+<meta property="og:description" content="MynlpEnv对象负责从系统中加载文件资源，包含三个默认加载器： File JARFile classpath 当你通过maven依赖导入资源文件jar后，classpath加载器" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/others/resource-loader/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Getting Started"/>
-<meta name="twitter:description" content=""/>
-<meta itemprop="name" content="Getting Started">
-<meta itemprop="description" content=""></head>
+<meta name="twitter:title" content="资源加载器"/>
+<meta name="twitter:description" content="MynlpEnv对象负责从系统中加载文件资源，包含三个默认加载器： File JARFile classpath 当你通过maven依赖导入资源文件jar后，classpath加载器"/>
+<meta itemprop="name" content="资源加载器">
+<meta itemprop="description" content="MynlpEnv对象负责从系统中加载文件资源，包含三个默认加载器： File JARFile classpath 当你通过maven依赖导入资源文件jar后，classpath加载器">
+
+<meta itemprop="wordCount" content="540">
+
+
+
+<meta itemprop="keywords" content="" /></head>
 <body><div class="container"><header>
 <h1>Mynlp文档</h1>
 
@@ -83,10 +89,42 @@ table,.highlight{
 </nav>
 </div>
 <div class="content-container">
-<main><h1>Getting Started</h1><div class="edit-meta">
+<main><h1>资源加载器</h1>
+<p>MynlpEnv对象负责从系统中加载文件资源，包含三个默认加载器：</p>
+<ul>
+<li>File</li>
+<li>JARFile</li>
+<li>classpath</li>
+</ul>
+<p>当你通过maven依赖导入资源文件jar后，classpath加载器会加载到这些资源。</p>
+<p>由于一些其他的情况，不希望从classpath中依赖，比如FAT Jar打包过大。</p>
+<h3 id="mynlpdata">mynlp.data</h3>
+<p>资源加载器File和JARFile是从${mynlp.data}指定的目录去加载资源文件，
+默认 ${mynlp.data} = ~/mynlp.data</p>
+<p>假设加载资源路径<code>core-dict/CoreDict.txt</code>,</p>
+<pre><code>mynlpEnv.loadResource(&quot;core-dict/CoreDict.txt&quot;)
+</code></pre><ul>
+<li>FileLoader 尝试访问 ~/mynlp.data/core-dict/CoreDict.txt</li>
+<li>JARFile 尝试访问 ~/mynlp.data/*.jar/core-dict/CoreDict.txt</li>
+</ul>
+<p>如果你打算从mynlp.data中加载资源文件，记得从segment依赖中exclude这些资源包</p>
+<pre><code>    compile group: 'com.mayabot.mynlp', name: 'mynlp-segment', version: '3.0.0-beta.1'
+    {
+        exclude group: &quot;com.mayabot.mynlp.resource&quot;
+    }
+</code></pre><h3 id="自定义nlpresourcefactory">自定义NlpResourceFactory</h3>
+<p>用户自定义NlpResourceFactory，以实现自定义策略，如从数据库中加载词典内容。</p>
+<p>mynlp资源加载默认策略，是从各个地方加载文件类型的资源。如果你需要从数据库、url或其他环境中加载资源，你可以通过实现
+NlpResourceFactory来自定义文件资源加载策略，比如从数据库、HDFS、redis等来源。</p>
+<p>自定义的NlpResourceFactory安装方法如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mynlps</span><span class="o">.</span><span class="na">install</span><span class="o">(</span><span class="n">mynlpBuilder</span> <span class="o">-</span><span class="o">&gt;</span> <span class="o">{</span>
+            <span class="n">mynlpBuilder</span><span class="o">.</span><span class="na">addResourceFactory</span><span class="o">(</span><span class="n">yourNlpResourceFactory</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>比如当你需要从mynlp数据库中加载自定义分词词典，只需要实现一个接口就可以完成对mynlp的扩充了。</p>
+<div class="edit-meta">
 
-<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp文档首页"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp文档首页</a>
-<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/others/log/" title="日志服务"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 日志服务</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/others/log/" title="日志服务">Next - 日志服务 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
 </footer>
 </main><div class="sidebar">
@@ -95,7 +133,7 @@ table,.highlight{
 <ul>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
 
-<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
@@ -144,11 +182,11 @@ table,.highlight{
 
 
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
 </ul>
   
 </li>

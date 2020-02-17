@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>拼音转换 - Mynlp文档</title>
+<meta name="description" content="中文文字转拼音API">
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #FFFFF3;--custom-background-color: #566270;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 15%;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+<meta property="og:title" content="拼音转换" />
+<meta property="og:description" content="中文文字转拼音API" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/modules/pinyin/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="拼音转换"/>
+<meta name="twitter:description" content="中文文字转拼音API"/>
+<meta itemprop="name" content="拼音转换">
+<meta itemprop="description" content="中文文字转拼音API">
+
+<meta itemprop="wordCount" content="764">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Mynlp文档</h1>
+
+ <span class="version">Version 3.x</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">Blog</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>拼音转换</h1>
+<aside class="table_of_contents">
+<h5>Table of Contents</h5><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#简单使用">简单使用</a></li>
+    <li><a href="#指定拼音词典扩展">指定拼音词典扩展</a></li>
+    <li><a href="#动态拼音词典扩展">动态拼音词典扩展</a></li>
+  </ul>
+</nav></aside>
+
+<h2 id="安装">安装</h2>
+<p>Maven:</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-pinyin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.x<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>Gradle:</p>
+<div class="highlight"><pre class="chroma"><code class="language-gradle" data-lang="gradle"><span class="n">compile</span> <span class="s1">&#39;com.mayabot.mynlp:mynlp-pinyin:3.x&#39;</span>
+</code></pre></div><p>文字转拼音本质上是根据词典进行转换的，底层采用AhoCorasickDoubleArrayTrie进行高性能识别和转换的。
+AhoCorasickDoubleArrayTrie和拼音转换的基本逻辑是来自Hanlp，这里我们优化了API、词典加载、动态加载等实现。</p>
+<h2 id="简单使用">简单使用</h2>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">PinyinResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Pinyins</span><span class="o">.</span><span class="na">convert</span><span class="o">(</span><span class="s">&#34;招商银行推出朝朝盈理财产品&#34;</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asHeadList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asHeadString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asHeadString</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asString</span><span class="o">(</span><span class="s">&#34;|&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>返回如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[zhao, shang, yin, hang, tui, chu, chao, chao, ying, li, cai, chan, pin]
+[z, s, y, h, t, c, c, c, y, l, c, c, p]
+z s y h t c c c y l c c p
+zsyhtcccylccp
+zhao shang yin hang tui chu chao chao ying li cai chan pin
+zhao|shang|yin|hang|tui|chu|chao|chao|ying|li|cai|chan|pin
+</code></pre></div><p>你还可以进行通过这些方法进行控制：</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>skipNull</td>
+<td>默认false。 忽略null值</td>
+</tr>
+<tr>
+<td>ignorePunctuation</td>
+<td>默认true。忽略标点</td>
+</tr>
+<tr>
+<td>fuzzy</td>
+<td>模糊拼音归一化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="指定拼音词典扩展">指定拼音词典扩展</h2>
+<p>默认的拼音词典总归是不全面的或存在错误，你可以指定自己的拼音扩展。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">        <span class="n">Mynlps</span><span class="o">.</span><span class="na">install</span><span class="o">(</span><span class="n">builder</span> <span class="o">-</span><span class="o">&gt;</span> <span class="o">{</span>
+            <span class="n">builder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">PinyiService</span><span class="o">.</span><span class="na">pinyinExtDicSetting</span><span class="o">,</span> <span class="s">&#34;pinyin.txt&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>资源文件pinyin.txt的存储位置，参见<a href="resources">资源文件加载</a>。一般你可以放在${dataDir}下面的
+pinyin.txt。
+关于数据目录dataDir请参照<a href="system">系统架构与设置</a></p>
+<p>扩展文件的格式是：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">还款=huan2,kuan3
+朝朝盈=zhao1,zhao1,yin2
+</code></pre></div><blockquote>
+<p>系统默认的拼音词典的在开源项目<a href="https://github.com/mayabot/mynlp-resources">mynlp-resources</a>中提供，
+如果大家发现错误或者需要新增，欢迎大家通过ISSUE或者代码PULL Request提交更多的拼音扩展，大家一起把这个库补充完善。</p>
+</blockquote>
+<h2 id="动态拼音词典扩展">动态拼音词典扩展</h2>
+<p>有一些系统比较实时，拼音修正的词典可能存储在数据库里面，需要修改后及时生效。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">PinyinDictionary</span> <span class="n">pinyinService</span> <span class="o">=</span> <span class="n">Mynlps</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">PinyinDictionary</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">CustomPinyin</span> <span class="n">customPinyin</span> <span class="o">=</span> <span class="n">pinyinService</span><span class="o">.</span><span class="na">getCustomPinyin</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">customPinyin</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;朝朝盈&#34;</span><span class="o">,</span> <span class="s">&#34;zhao1,zhao1,yin2&#34;</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">//生效
+</span><span class="c1"></span><span class="n">pinyinService</span><span class="o">.</span><span class="na">rebuild</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>CustomPinyin可以put和remove字典信息。最后调用rebuild方法进行生效。</p>
+<p>其实Pinyins只是对<code>pinyinService.text2Pinyin</code>方法的调用代理。</p>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/" title="酒店评论分类示例"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 酒店评论分类示例</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/modules/summary/" title="文本摘要">Next - 文本摘要 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">中文分词API示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/">词法分析</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/">感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/example/">感知机应用示例-拼音流切分</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

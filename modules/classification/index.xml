@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文本分类 on Mynlp文档</title>
+    <link>https://mayabot.github.io/mynlp-doc/modules/classification/</link>
+    <description>Recent content in 文本分类 on Mynlp文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://mayabot.github.io/mynlp-doc/modules/classification/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>酒店评论分类示例</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/classification/hotel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/classification/hotel/</guid>
+      <description>从网上找了一份酒店评论正负面的语料库来测试，演示和验证fasttext文本分类。 代码如下: import com.google.common.base.Charsets; import com.google.common.io.Files; import com.mayabot.mynlp.fasttext.FastText; import com.mayabot.nlp.classification.FasttextClassification; import com.mayabot.nlp.utils.DownloadUtils; import java.io.File; import java.util.List; /** * 酒店评论的分类测试</description>
+    </item>
+    
+  </channel>
+</rss>

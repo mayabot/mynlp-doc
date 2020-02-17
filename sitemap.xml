@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mayabot.github.io/mynlp-doc/getting-started/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
+  </url>
+  
+  <url>
     <loc>https://mayabot.github.io/mynlp-doc/getting-started/installation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/modules/classification/</loc>
   </url>
   
   <url>
@@ -11,7 +23,23 @@
   </url>
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/getting-started/</loc>
+    <loc>https://mayabot.github.io/mynlp-doc/perceptron/example/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/lexer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/fasttext/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/modules/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/perceptron/</loc>
   </url>
   
   <url>
@@ -30,6 +58,18 @@
   </url>
   
   <url>
+    <loc>https://mayabot.github.io/mynlp-doc/modules/pinyin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/modules/summary/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/modules/transform/</loc>
+  </url>
+  
+  <url>
     <loc>https://mayabot.github.io/mynlp-doc/sample/</loc>
     <lastmod>2017-10-17T15:26:15+00:00</lastmod>
   </url>
@@ -45,6 +85,22 @@
   
   <url>
     <loc>https://mayabot.github.io/mynlp-doc/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/others/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/others/log/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/others/resource-loader/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/modules/classification/hotel/</loc>
   </url>
   
 </urlset>

@@ -3,10 +3,11 @@
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Getting Started - Mynlp文档</title>
+<title>感知机 - Mynlp文档</title>
+<meta name="description" content="平均感知机和结构化感知机">
 <meta name="generator" content="Hugo 0.64.1" />
 <link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
-<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/getting-started/">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/perceptron/">
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
 <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
@@ -58,16 +59,16 @@ table,.highlight{
 }
 
 </style>
-<meta property="og:title" content="Getting Started" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="感知机" />
+<meta property="og:description" content="平均感知机和结构化感知机" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/perceptron/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Getting Started"/>
-<meta name="twitter:description" content=""/>
-<meta itemprop="name" content="Getting Started">
-<meta itemprop="description" content=""></head>
+<meta name="twitter:title" content="感知机"/>
+<meta name="twitter:description" content="平均感知机和结构化感知机"/>
+<meta itemprop="name" content="感知机">
+<meta itemprop="description" content="平均感知机和结构化感知机"></head>
 <body><div class="container"><header>
 <h1>Mynlp文档</h1>
 
@@ -83,10 +84,36 @@ table,.highlight{
 </nav>
 </div>
 <div class="content-container">
-<main><h1>Getting Started</h1><div class="edit-meta">
+<main><h1>感知机</h1><h1 id="感知机">感知机</h1>
+<p>感知机参考<a href="http://www.hankcs.com/nlp/segment/implementation-of-word-segmentation-device-java-based-on-structured-average-perceptron.html">《基于结构化平均感知机的分词器Java实现》</a></p>
+<p>先不管感知机具体算法和数学原理，这个工具的作用就是序列标注学习和解码。</p>
+<pre><code>假定序列：
+a1 a2 a3 a3 a.. an
+每个序列对应标注代码:
+0 0 1 2 2 3 4 .. 1
 
-<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp文档首页"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp文档首页</a>
-<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+感知机可以学习标注行为，然后未知的输入：
+b1 b2 b3 bn
+进行估计对应标签代码。
+</code></pre><p>这就是感知机抽象的功能，就是一种快速高效的序列标注技术。对应的其他技术有CRF(条件随机场)、LSTM等。</p>
+<p>我们可以把中文分词、词性标注、命名实体识别等问题转换为序列标注解码过程。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-perceptron<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.x<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>是一个通用的、高性能感知机框架。mynlp其他感知机分词、词性标注、人名识别、NER等都是基于这个框架开发的。
+当然你可以基于这个框架解决其他序列标注问题，下面我们将演示如果切分拼音流。(wanzhengdepinyin =&gt; wan zheng de pin yin)</p>
+<p>你只需告知感知机框架两件事情：</p>
+<ul>
+<li>特征提取函数</li>
+<li>label编码</li>
+<li>原始语料如果转换为(输入=标签)二元组</li>
+</ul>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/modules/transform/" title="繁简体转换"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 繁简体转换</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/perceptron/example/" title="感知机应用示例-拼音流切分">Next - 感知机应用示例-拼音流切分 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
 </footer>
 </main><div class="sidebar">
@@ -95,7 +122,7 @@ table,.highlight{
 <ul>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
 
-<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
@@ -134,7 +161,7 @@ table,.highlight{
   
 </li>
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/">感知机</a>
+<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/perceptron/">感知机</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/example/">感知机应用示例-拼音流切分</a></li>

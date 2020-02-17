@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>文本摘要 - Mynlp文档</title>
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/modules/summary/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #FFFFF3;--custom-background-color: #566270;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 15%;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+<meta property="og:title" content="文本摘要" />
+<meta property="og:description" content="安装 Maven: &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-summary&lt;/artifactId&gt; &lt;version&gt;3.x&lt;/version&gt; &lt;/dependency&gt; Gradle: compile &#39;com.mayabot.mynlp:mynlp-summary:3.x&#39; API 文本摘要包含了两个简单TextRank的实现。 关键字摘要 KeywordSummary keywordSummary = new KeywordSummary(); keywordSummary.keyword(&#34;text&#34;,10); 句子摘要 SentenceSummary sentenceSummary = new SentenceSummary(); List&lt;String&gt; result = sentenceSummary.summarySentences(document, 10); KeywordSum" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/modules/summary/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="文本摘要"/>
+<meta name="twitter:description" content="安装 Maven: &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-summary&lt;/artifactId&gt; &lt;version&gt;3.x&lt;/version&gt; &lt;/dependency&gt; Gradle: compile &#39;com.mayabot.mynlp:mynlp-summary:3.x&#39; API 文本摘要包含了两个简单TextRank的实现。 关键字摘要 KeywordSummary keywordSummary = new KeywordSummary(); keywordSummary.keyword(&#34;text&#34;,10); 句子摘要 SentenceSummary sentenceSummary = new SentenceSummary(); List&lt;String&gt; result = sentenceSummary.summarySentences(document, 10); KeywordSum"/>
+<meta itemprop="name" content="文本摘要">
+<meta itemprop="description" content="安装 Maven: &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-summary&lt;/artifactId&gt; &lt;version&gt;3.x&lt;/version&gt; &lt;/dependency&gt; Gradle: compile &#39;com.mayabot.mynlp:mynlp-summary:3.x&#39; API 文本摘要包含了两个简单TextRank的实现。 关键字摘要 KeywordSummary keywordSummary = new KeywordSummary(); keywordSummary.keyword(&#34;text&#34;,10); 句子摘要 SentenceSummary sentenceSummary = new SentenceSummary(); List&lt;String&gt; result = sentenceSummary.summarySentences(document, 10); KeywordSum">
+
+<meta itemprop="wordCount" content="118">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Mynlp文档</h1>
+
+ <span class="version">Version 3.x</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">Blog</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>文本摘要</h1>
+<aside class="table_of_contents">
+<h5>Table of Contents</h5><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#api">API</a></li>
+  </ul>
+</nav></aside>
+
+<h2 id="安装">安装</h2>
+<p>Maven:</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-summary<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.x<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>Gradle:</p>
+<div class="highlight"><pre class="chroma"><code class="language-gradle" data-lang="gradle"><span class="n">compile</span> <span class="s1">&#39;com.mayabot.mynlp:mynlp-summary:3.x&#39;</span>
+</code></pre></div><h2 id="api">API</h2>
+<p>文本摘要包含了两个简单TextRank的实现。</p>
+<p>关键字摘要</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">KeywordSummary</span> <span class="n">keywordSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeywordSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">keywordSummary</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;text&#34;</span><span class="o">,</span><span class="n">10</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>句子摘要</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">SentenceSummary</span> <span class="n">sentenceSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SentenceSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sentenceSummary</span><span class="o">.</span><span class="na">summarySentences</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="n">10</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>KeywordSummary和SentenceSummary内置了默认的分词实现，你可以配置自定义的Lexer对象。</p>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/modules/pinyin/" title="拼音转换"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 拼音转换</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/modules/transform/" title="繁简体转换">Next - 繁简体转换 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">中文分词API示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/">词法分析</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/">感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/example/">感知机应用示例-拼音流切分</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

@@ -3,10 +3,10 @@
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Getting Started - Mynlp文档</title>
+<title>日志服务 - Mynlp文档</title>
 <meta name="generator" content="Hugo 0.64.1" />
 <link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
-<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/getting-started/">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/others/log/">
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
 <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
@@ -58,16 +58,22 @@ table,.highlight{
 }
 
 </style>
-<meta property="og:title" content="Getting Started" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/" />
+<meta property="og:title" content="日志服务" />
+<meta property="og:description" content="Mynlp中日志输出，不是简单打印到控制台，或者指定使用某个日志系统。 我们借鉴了Elasticsearch中适配各个日志组件的方法，这样设计" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/others/log/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Getting Started"/>
-<meta name="twitter:description" content=""/>
-<meta itemprop="name" content="Getting Started">
-<meta itemprop="description" content=""></head>
+<meta name="twitter:title" content="日志服务"/>
+<meta name="twitter:description" content="Mynlp中日志输出，不是简单打印到控制台，或者指定使用某个日志系统。 我们借鉴了Elasticsearch中适配各个日志组件的方法，这样设计"/>
+<meta itemprop="name" content="日志服务">
+<meta itemprop="description" content="Mynlp中日志输出，不是简单打印到控制台，或者指定使用某个日志系统。 我们借鉴了Elasticsearch中适配各个日志组件的方法，这样设计">
+
+<meta itemprop="wordCount" content="285">
+
+
+
+<meta itemprop="keywords" content="" /></head>
 <body><div class="container"><header>
 <h1>Mynlp文档</h1>
 
@@ -83,10 +89,46 @@ table,.highlight{
 </nav>
 </div>
 <div class="content-container">
-<main><h1>Getting Started</h1><div class="edit-meta">
+<main><h1>日志服务</h1>
+<p>Mynlp中日志输出，不是简单打印到控制台，或者指定使用某个日志系统。
+我们借鉴了Elasticsearch中适配各个日志组件的方法，这样设计的目的是兼容你项目的环境的日志配置文件
+，避免多个不同日志系统的冲突。</p>
+<p>支持如下日志系统API：</p>
+<table>
+<thead>
+<tr>
+<th>日志</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JdkLogger</td>
+<td>java.util.logging.Logger</td>
+</tr>
+<tr>
+<td>Log4JLogger</td>
+<td>log4j 1.x</td>
+</tr>
+<tr>
+<td>Log4J2Logger</td>
+<td>log4j 2.x，logback</td>
+</tr>
+<tr>
+<td>Slf4JLogger</td>
+<td>slf4j</td>
+</tr>
+</tbody>
+</table>
+<p>Mynlp使用了一个Logger抽象层，系统运行时去Classpath查找各种Logger的实现类，如果找到了就会使用对应的实现。
+所以你可以自由地选择Logger实现。无需配置，自动检测适配。</p>
+<p>比如在你的工程中使用logback依赖：</p>
+<pre><code>compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+</code></pre><p>mynlp会自动使用logback输出日志。</p>
+<div class="edit-meta">
 
-<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp文档首页"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp文档首页</a>
-<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/others/" title="其他"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 其他</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/others/resource-loader/" title="资源加载器">Next - 资源加载器 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
 </footer>
 </main><div class="sidebar">
@@ -95,7 +137,7 @@ table,.highlight{
 <ul>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
 
-<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
@@ -144,10 +186,10 @@ table,.highlight{
 
 
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
 </ul>
   

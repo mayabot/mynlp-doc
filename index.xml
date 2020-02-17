@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>基本用法</title>
+      <link>https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
+      <description>mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-segment&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice</description>
+    </item>
+    
+    <item>
       <title>安装</title>
       <link>https://mayabot.github.io/mynlp-doc/getting-started/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -27,6 +36,15 @@
       
       <guid>https://mayabot.github.io/mynlp-doc/getting-started/segment/</guid>
       <description>Kotlin: println(&amp;#34;mynlp是mayabot开源的中文NLP工具包。&amp;#34;.lexer().toList()) Java: Lexer lexer = Lexers.coreBuilder() //c</description>
+    </item>
+    
+    <item>
+      <title>感知机应用示例-拼音流切分</title>
+      <link>https://mayabot.github.io/mynlp-doc/perceptron/example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/perceptron/example/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -57,6 +75,60 @@ figure   2 People Sitting With View of Yellow Flowers during Daytime   gist  hig
       <description>The TableOfContents field set to true in your content’s front matter will render a table of contents.
 TableOfContents: true Setting the built-in .TableOfContents variables can configure what heading levels you want to include in TOC. See the built-in .TableOfContents variables settings
 Section 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</description>
+    </item>
+    
+    <item>
+      <title>拼音转换</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/pinyin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/pinyin/</guid>
+      <description>安装 Maven: &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-pinyin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.x&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle: compile &amp;#39;com.mayabot.mynlp:mynlp-pinyin:3.x&amp;#39; 文字转拼音本质上是根据词典进行转换的，底层采用AhoCorasickDoubleArrayTrie进行高性能识别和转换</description>
+    </item>
+    
+    <item>
+      <title>文本摘要</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/summary/</guid>
+      <description>安装 Maven: &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-summary&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.x&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle: compile &amp;#39;com.mayabot.mynlp:mynlp-summary:3.x&amp;#39; API 文本摘要包含了两个简单TextRank的实现。 关键字摘要 KeywordSummary keywordSummary = new KeywordSummary(); keywordSummary.keyword(&amp;#34;text&amp;#34;,10); 句子摘要 SentenceSummary sentenceSummary = new SentenceSummary(); List&amp;lt;String&amp;gt; result = sentenceSummary.summarySentences(document, 10); KeywordSum</description>
+    </item>
+    
+    <item>
+      <title>繁简体转换</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/transform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/transform/</guid>
+      <description>安装 Maven: &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-transform&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.x&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle: compile &amp;#39;com.mayabot.mynlp:mynlp-transform:3.x&amp;#39; API Simplified2Traditional s2t = TransformService.simplified2Traditional(); s2t.transform(&amp;#34;软件和体育的艺术&amp;#34;); 繁体转简体 Traditional2Simplified t2s = TransformService.traditional2Simplified(); t2s.transfo</description>
+    </item>
+    
+    <item>
+      <title>日志服务</title>
+      <link>https://mayabot.github.io/mynlp-doc/others/log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/others/log/</guid>
+      <description>Mynlp中日志输出，不是简单打印到控制台，或者指定使用某个日志系统。 我们借鉴了Elasticsearch中适配各个日志组件的方法，这样设计</description>
+    </item>
+    
+    <item>
+      <title>资源加载器</title>
+      <link>https://mayabot.github.io/mynlp-doc/others/resource-loader/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/others/resource-loader/</guid>
+      <description>MynlpEnv对象负责从系统中加载文件资源，包含三个默认加载器： File JARFile classpath 当你通过maven依赖导入资源文件jar后，classpath加载器</description>
+    </item>
+    
+    <item>
+      <title>酒店评论分类示例</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/classification/hotel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/classification/hotel/</guid>
+      <description>从网上找了一份酒店评论正负面的语料库来测试，演示和验证fasttext文本分类。 代码如下: import com.google.common.base.Charsets; import com.google.common.io.Files; import com.mayabot.mynlp.fasttext.FastText; import com.mayabot.nlp.classification.FasttextClassification; import com.mayabot.nlp.utils.DownloadUtils; import java.io.File; import java.util.List; /** * 酒店评论的分类测试</description>
     </item>
     
   </channel>

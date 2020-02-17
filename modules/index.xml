@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>功能模块 on Mynlp文档</title>
+    <link>https://mayabot.github.io/mynlp-doc/modules/</link>
+    <description>Recent content in 功能模块 on Mynlp文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://mayabot.github.io/mynlp-doc/modules/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>拼音转换</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/pinyin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/pinyin/</guid>
+      <description>安装 Maven: &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-pinyin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.x&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle: compile &amp;#39;com.mayabot.mynlp:mynlp-pinyin:3.x&amp;#39; 文字转拼音本质上是根据词典进行转换的，底层采用AhoCorasickDoubleArrayTrie进行高性能识别和转换</description>
+    </item>
+    
+    <item>
+      <title>文本摘要</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/summary/</guid>
+      <description>安装 Maven: &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-summary&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.x&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle: compile &amp;#39;com.mayabot.mynlp:mynlp-summary:3.x&amp;#39; API 文本摘要包含了两个简单TextRank的实现。 关键字摘要 KeywordSummary keywordSummary = new KeywordSummary(); keywordSummary.keyword(&amp;#34;text&amp;#34;,10); 句子摘要 SentenceSummary sentenceSummary = new SentenceSummary(); List&amp;lt;String&amp;gt; result = sentenceSummary.summarySentences(document, 10); KeywordSum</description>
+    </item>
+    
+    <item>
+      <title>繁简体转换</title>
+      <link>https://mayabot.github.io/mynlp-doc/modules/transform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/modules/transform/</guid>
+      <description>安装 Maven: &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-transform&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.x&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle: compile &amp;#39;com.mayabot.mynlp:mynlp-transform:3.x&amp;#39; API Simplified2Traditional s2t = TransformService.simplified2Traditional(); s2t.transform(&amp;#34;软件和体育的艺术&amp;#34;); 繁体转简体 Traditional2Simplified t2s = TransformService.traditional2Simplified(); t2s.transfo</description>
+    </item>
+    
+  </channel>
+</rss>

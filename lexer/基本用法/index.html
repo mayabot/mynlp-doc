@@ -3,10 +3,10 @@
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Getting Started - Mynlp文档</title>
+<title>基本用法 - Mynlp文档</title>
 <meta name="generator" content="Hugo 0.64.1" />
 <link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
-<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/getting-started/">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
 <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
@@ -58,16 +58,22 @@ table,.highlight{
 }
 
 </style>
-<meta property="og:title" content="Getting Started" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/" />
+<meta property="og:title" content="基本用法" />
+<meta property="og:description" content="mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;/dependency&gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Getting Started"/>
-<meta name="twitter:description" content=""/>
-<meta itemprop="name" content="Getting Started">
-<meta itemprop="description" content=""></head>
+<meta name="twitter:title" content="基本用法"/>
+<meta name="twitter:description" content="mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;/dependency&gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice"/>
+<meta itemprop="name" content="基本用法">
+<meta itemprop="description" content="mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;/dependency&gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice">
+
+<meta itemprop="wordCount" content="134">
+
+
+
+<meta itemprop="keywords" content="" /></head>
 <body><div class="container"><header>
 <h1>Mynlp文档</h1>
 
@@ -83,10 +89,62 @@ table,.highlight{
 </nav>
 </div>
 <div class="content-container">
-<main><h1>Getting Started</h1><div class="edit-meta">
+<main><h1>基本用法</h1>
+<p>mynlp多个功能被划分在不同的模块中，下面演示分词模块：</p>
+<p>GRADLE</p>
+<pre><code>compile 'com.mayabot.mynlp:mynlp-segment:3.0.1'
+</code></pre><p>或者MAVEN</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-segment<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.0.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th>模块（artifactId）</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mynlp-core</td>
+<td>基础功能 Guice、logger、资源、基础数据结构和算法</td>
+</tr>
+<tr>
+<td>mynlp-perceptron</td>
+<td>通用序列标注感知机</td>
+</tr>
+<tr>
+<td>mynlp-segment</td>
+<td>分词</td>
+</tr>
+<tr>
+<td>mynlp-classification</td>
+<td>文本分类</td>
+</tr>
+<tr>
+<td>mynlp-lucene</td>
+<td>lucene 分析器接口实现</td>
+</tr>
+<tr>
+<td>mynlp-pinyin</td>
+<td>文字转拼音</td>
+</tr>
+<tr>
+<td>mynlp-summary</td>
+<td>文本摘要</td>
+</tr>
+<tr>
+<td>mynlp-transform</td>
+<td>繁简体互转</td>
+</tr>
+</tbody>
+</table>
+<div class="edit-meta">
 
-<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp文档首页"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp文档首页</a>
-<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/lexer/" title="词法分析"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 词法分析</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/fasttext/" title="Fasttext">Next - Fasttext <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
 </footer>
 </main><div class="sidebar">
@@ -95,7 +153,7 @@ table,.highlight{
 <ul>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
 
-<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
@@ -104,10 +162,10 @@ table,.highlight{
   
 </li>
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/">词法分析</a>
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/lexer/">词法分析</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
 </ul>
   
 </li>

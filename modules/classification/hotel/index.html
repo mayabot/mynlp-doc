@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>酒店评论分类示例 - Mynlp文档</title>
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #FFFFF3;--custom-background-color: #566270;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 15%;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+<meta property="og:title" content="酒店评论分类示例" />
+<meta property="og:description" content="从网上找了一份酒店评论正负面的语料库来测试，演示和验证fasttext文本分类。 代码如下: import com.google.common.base.Charsets; import com.google.common.io.Files; import com.mayabot.mynlp.fasttext.FastText; import com.mayabot.nlp.classification.FasttextClassification; import com.mayabot.nlp.utils.DownloadUtils; import java.io.File; import java.util.List; /** * 酒店评论的分类测试" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="酒店评论分类示例"/>
+<meta name="twitter:description" content="从网上找了一份酒店评论正负面的语料库来测试，演示和验证fasttext文本分类。 代码如下: import com.google.common.base.Charsets; import com.google.common.io.Files; import com.mayabot.mynlp.fasttext.FastText; import com.mayabot.nlp.classification.FasttextClassification; import com.mayabot.nlp.utils.DownloadUtils; import java.io.File; import java.util.List; /** * 酒店评论的分类测试"/>
+<meta itemprop="name" content="酒店评论分类示例">
+<meta itemprop="description" content="从网上找了一份酒店评论正负面的语料库来测试，演示和验证fasttext文本分类。 代码如下: import com.google.common.base.Charsets; import com.google.common.io.Files; import com.mayabot.mynlp.fasttext.FastText; import com.mayabot.nlp.classification.FasttextClassification; import com.mayabot.nlp.utils.DownloadUtils; import java.io.File; import java.util.List; /** * 酒店评论的分类测试">
+
+<meta itemprop="wordCount" content="413">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Mynlp文档</h1>
+
+ <span class="version">Version 3.x</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">Blog</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>酒店评论分类示例</h1>
+<p>从网上找了一份酒店评论正负面的语料库来测试，演示和验证fasttext文本分类。</p>
+<p>代码如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="kn">import</span> <span class="nn">com.google.common.base.Charsets</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.common.io.Files</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mayabot.mynlp.fasttext.FastText</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mayabot.nlp.classification.FasttextClassification</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mayabot.nlp.utils.DownloadUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * 酒店评论的分类测试
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HotelCommentExampleTrain</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+
+
+        <span class="n">File</span> <span class="n">trainFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;example.data/hotel-train.txt&#34;</span><span class="o">)</span><span class="o">;</span>
+
+
+        <span class="k">if</span> <span class="o">(</span><span class="o">!</span><span class="n">trainFile</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">File</span> <span class="n">trainZipFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;example.data/hotel-train.txt.zip&#34;</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">File</span> <span class="n">testZipFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;example.data/hotel-test.txt.zip&#34;</span><span class="o">)</span><span class="o">;</span>
+
+            <span class="n">DownloadUtils</span><span class="o">.</span><span class="na">download</span><span class="o">(</span><span class="s">&#34;http://cdn.mayabot.com/nlp/hotel-train.txt.zip&#34;</span><span class="o">,</span>
+                    <span class="n">trainZipFile</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">DownloadUtils</span><span class="o">.</span><span class="na">download</span><span class="o">(</span><span class="s">&#34;http://cdn.mayabot.com/nlp/hotel-test.txt.zip&#34;</span><span class="o">,</span>
+                    <span class="n">testZipFile</span><span class="o">)</span><span class="o">;</span>
+
+            <span class="n">DownloadUtils</span><span class="o">.</span><span class="na">unzip</span><span class="o">(</span><span class="n">trainZipFile</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">DownloadUtils</span><span class="o">.</span><span class="na">unzip</span><span class="o">(</span><span class="n">testZipFile</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">trainZipFile</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">testZipFile</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">FastText</span> <span class="n">modelTrain</span> <span class="o">=</span> <span class="n">FasttextClassification</span><span class="o">.</span><span class="na">train</span><span class="o">(</span><span class="n">trainFile</span><span class="o">,</span> <span class="n">100</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span><span class="o">;</span>
+
+        <span class="n">modelTrain</span><span class="o">.</span><span class="na">saveModel</span><span class="o">(</span><span class="s">&#34;example.data/hotel.model&#34;</span><span class="o">)</span><span class="o">;</span>
+
+
+        <span class="c1">//test
+</span><span class="c1"></span>
+        <span class="o">{</span>
+            <span class="n">FastText</span> <span class="n">model</span> <span class="o">=</span> <span class="n">FastText</span><span class="o">.</span><span class="na">loadModel</span><span class="o">(</span><span class="s">&#34;example.data/hotel.model&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span><span class="o">;</span>
+
+
+            <span class="n">File</span> <span class="n">testFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;example.data/hotel-test.txt&#34;</span><span class="o">)</span><span class="o">;</span>
+
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">examples</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">readLines</span><span class="o">(</span><span class="n">testFile</span><span class="o">,</span> <span class="n">Charsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">)</span><span class="o">;</span>
+
+            <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">success</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">examples</span><span class="o">.</span><span class="na">size</span><span class="o">(</span><span class="o">)</span><span class="o">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span><span class="o">;</span>
+
+                <span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">)</span><span class="o">;</span>
+
+                <span class="n">String</span> <span class="n">label</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+                <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">part</span> <span class="o">:</span> <span class="n">parts</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">part</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;__label__&#34;</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">label</span> <span class="o">=</span> <span class="n">part</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">FasttextClassification</span><span class="o">.</span><span class="na">predict</span><span class="o">(</span><span class="n">model</span><span class="o">,</span> <span class="n">line</span><span class="o">)</span><span class="o">;</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">label</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">result</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">success</span><span class="o">+</span><span class="o">+</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="o">}</span>
+
+                <span class="n">total</span><span class="o">+</span><span class="o">+</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Total &#34;</span> <span class="o">+</span> <span class="n">total</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Success &#34;</span> <span class="o">+</span> <span class="n">success</span><span class="o">)</span><span class="o">;</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;正确率 &#34;</span> <span class="o">+</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;%.2f&#34;</span><span class="o">,</span> <span class="n">success</span> <span class="o">*</span> <span class="n">100</span><span class="o">.</span><span class="na">0</span> <span class="o">/</span> <span class="n">total</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;%&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div><p>上述程序会自动下载这个酒店评论训练集和测试集，然后训练和验证测试集。
+最终运行结果如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Read file build dictionary ...
+Read 0M words
+Number of words:  17291
+Number of labels: 2
+Progress: 100.00% words/sec/thread:   848860 lr: 0.00000 loss: 0.43875 ETA: 0h 0m 0s
+Train use time 2093 ms
+Total Test Data 400
+Success 362
+正确率 90.50%
+</code></pre></div><p>如果你有其他测试集或者各使用场景的测试数据，那么请ISSUE告知我们。另外我们也计划修改Fasttext程序，
+在训练过程中加入词的权重来影响向量空间，是否能提高准确率。</p>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/modules/classification/" title="文本分类"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 文本分类</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/modules/pinyin/" title="拼音转换">Next - 拼音转换 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">中文分词API示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/">词法分析</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/">感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/example/">感知机应用示例-拼音流切分</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>
