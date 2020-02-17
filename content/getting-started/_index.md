@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
 draft: true
-weight: 5
+weight: 1
 ---
 sss

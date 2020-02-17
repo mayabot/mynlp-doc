@@ -40,8 +40,8 @@ enableMissingTranslationPlaceholders = false
 
     # Theme settings section
     # Theme color
-    custom_font_color = "white"
-    custom_background_color = "#333"
+    custom_font_color = "#FFFFF3"
+    custom_background_color = "#566270"
 
     # Documentation Menu section
     # Menu style settings

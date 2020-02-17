@@ -1,5 +1,6 @@
 ---
 title: Mynlp文档首页
+draft: false
 description: 一个高性能、模块化、可扩展的中文NLP工具包（中文分词 词性标注 命名实体识别 新词发现 文本分类 拼音简繁转换）
 ---
 
