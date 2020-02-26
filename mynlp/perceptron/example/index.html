@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>拼音流切分示例 - Mynlp文档</title>
+<meta name="description" content="">
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #ededed;--custom-background-color: #142850;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+header h1{
+    font-size: 35px;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 20%;
+}
+
+.sidebar a {
+    color: #27496d;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+
+
+<style>
+
+    .chroma { background-color: #ffffff } .chroma .err { color: #a61717; background-color: #e3d2d2 } .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; } .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; } .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 } .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .k { color: #000000; font-weight: bold } .chroma .kc { color: #000000; font-weight: bold } .chroma .kd { color: #000000; font-weight: bold } .chroma .kn { color: #000000; font-weight: bold } .chroma .kp { color: #000000; font-weight: bold } .chroma .kr { color: #000000; font-weight: bold } .chroma .kt { color: #445588; font-weight: bold } .chroma .na { color: #008080 } .chroma .nb { color: #0086b3 } .chroma .bp { color: #999999 } .chroma .nc { color: #445588; font-weight: bold } .chroma .no { color: #008080 } .chroma .nd { color: #3c5d5d; font-weight: bold } .chroma .ni { color: #800080 } .chroma .ne { color: #990000; font-weight: bold } .chroma .nf { color: #990000; font-weight: bold } .chroma .nl { color: #990000; font-weight: bold } .chroma .nn { color: #555555 } .chroma .nt { color: #000080 } .chroma .nv { color: #008080 } .chroma .vc { color: #008080 } .chroma .vg { color: #008080 } .chroma .vi { color: #008080 } .chroma .s { color: #dd1144 } .chroma .sa { color: #dd1144 } .chroma .sb { color: #dd1144 } .chroma .sc { color: #dd1144 } .chroma .dl { color: #dd1144 } .chroma .sd { color: #dd1144 } .chroma .s2 { color: #dd1144 } .chroma .se { color: #dd1144 } .chroma .sh { color: #dd1144 } .chroma .si { color: #dd1144 } .chroma .sx { color: #dd1144 } .chroma .sr { color: #009926 } .chroma .s1 { color: #dd1144 } .chroma .ss { color: #990073 } .chroma .m { color: #009999 } .chroma .mb { color: #009999 } .chroma .mf { color: #009999 } .chroma .mh { color: #009999 } .chroma .mi { color: #009999 } .chroma .il { color: #009999 } .chroma .mo { color: #009999 } .chroma .o { color: #000000; font-weight: bold } .chroma .ow { color: #000000; font-weight: bold } .chroma .c { color: #999988; font-style: italic } .chroma .ch { color: #999988; font-style: italic } .chroma .cm { color: #999988; font-style: italic } .chroma .c1 { color: #999988; font-style: italic } .chroma .cs { color: #999999; font-weight: bold; font-style: italic } .chroma .cp { color: #999999; font-weight: bold; font-style: italic } .chroma .cpf { color: #999999; font-weight: bold; font-style: italic } .chroma .gd { color: #000000; background-color: #ffdddd } .chroma .ge { color: #000000; font-style: italic } .chroma .gr { color: #aa0000 } .chroma .gh { color: #999999 } .chroma .gi { color: #000000; background-color: #ddffdd } .chroma .go { color: #888888 } .chroma .gp { color: #555555 } .chroma .gs { font-weight: bold } .chroma .gu { color: #aaaaaa } .chroma .gt { color: #aa0000 } .chroma .gl { text-decoration: underline } .chroma .w { color: #bbbbbb }
+    .chroma {
+        color: inherit;
+        background-color: #ededed;
+    }
+</style><meta property="og:title" content="拼音流切分示例" />
+<meta property="og:description" content="定义感知机 class PinyinSplitDefinition : PerceptronDefinition&lt;Char, String, CharArray&gt;() { override val labels = listOf(&#34;B&#34;, &#34;M&#34;, &#34;E&#34;, &#34;S&#34;) override fun labelIndex(label: String): Int { return when (label) { &#34;B&#34; -&gt; 0 &#34;M&#34; -&gt; 1 &#34;E&#34; -&gt; 2 &#34;S&#34; -&gt; 3 else -&gt; 0 } } override fun buffer() = FastStringBuilder(4) override fun featureFunction(sentence: CharArray, size: Int, position: Int, buffer: FastStringBuilder, emit: () -&gt; Unit) { val CHAR_NULL =" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="拼音流切分示例"/>
+<meta name="twitter:description" content="定义感知机 class PinyinSplitDefinition : PerceptronDefinition&lt;Char, String, CharArray&gt;() { override val labels = listOf(&#34;B&#34;, &#34;M&#34;, &#34;E&#34;, &#34;S&#34;) override fun labelIndex(label: String): Int { return when (label) { &#34;B&#34; -&gt; 0 &#34;M&#34; -&gt; 1 &#34;E&#34; -&gt; 2 &#34;S&#34; -&gt; 3 else -&gt; 0 } } override fun buffer() = FastStringBuilder(4) override fun featureFunction(sentence: CharArray, size: Int, position: Int, buffer: FastStringBuilder, emit: () -&gt; Unit) { val CHAR_NULL ="/>
+<meta itemprop="name" content="拼音流切分示例">
+<meta itemprop="description" content="定义感知机 class PinyinSplitDefinition : PerceptronDefinition&lt;Char, String, CharArray&gt;() { override val labels = listOf(&#34;B&#34;, &#34;M&#34;, &#34;E&#34;, &#34;S&#34;) override fun labelIndex(label: String): Int { return when (label) { &#34;B&#34; -&gt; 0 &#34;M&#34; -&gt; 1 &#34;E&#34; -&gt; 2 &#34;S&#34; -&gt; 3 else -&gt; 0 } } override fun buffer() = FastStringBuilder(4) override fun featureFunction(sentence: CharArray, size: Int, position: Int, buffer: FastStringBuilder, emit: () -&gt; Unit) { val CHAR_NULL =">
+
+<meta itemprop="wordCount" content="651">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1><i class="fab fa-meetup"></i> Mynlp文档</h1>
+
+ <span class="version"> &nbsp;&nbsp; Last Version 3.1.0</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">博客</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>拼音流切分示例</h1>
+<p>定义感知机</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">PinyinSplitDefinition</span> <span class="p">:</span> <span class="n">PerceptronDefinition</span><span class="p">&lt;</span><span class="n">Char</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">CharArray</span><span class="p">&gt;</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+
+ <span class="k">override</span> <span class="k">val</span> <span class="py">labels</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="s">&#34;E&#34;</span><span class="p">,</span> <span class="s">&#34;S&#34;</span><span class="p">)</span>
+
+ <span class="k">override</span> <span class="k">fun</span> <span class="nf">labelIndex</span><span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span><span class="p">:</span> <span class="n">Int</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="p">{</span>
+         <span class="s">&#34;B&#34;</span> <span class="p">-</span><span class="p">&gt;</span> <span class="m">0</span>
+         <span class="s">&#34;M&#34;</span> <span class="p">-</span><span class="p">&gt;</span> <span class="m">1</span>
+         <span class="s">&#34;E&#34;</span> <span class="p">-</span><span class="p">&gt;</span> <span class="m">2</span>
+         <span class="s">&#34;S&#34;</span> <span class="p">-</span><span class="p">&gt;</span> <span class="m">3</span>
+         <span class="k">else</span> <span class="p">-</span><span class="p">&gt;</span> <span class="m">0</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="k">override</span> <span class="k">fun</span> <span class="nf">buffer</span><span class="p">(</span><span class="p">)</span> <span class="p">=</span> <span class="n">FastStringBuilder</span><span class="p">(</span><span class="m">4</span><span class="p">)</span>
+
+ <span class="k">override</span> <span class="k">fun</span> <span class="nf">featureFunction</span><span class="p">(</span><span class="n">sentence</span><span class="p">:</span> <span class="n">CharArray</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="n">FastStringBuilder</span><span class="p">,</span> <span class="n">emit</span><span class="p">:</span> <span class="p">(</span><span class="p">)</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">Unit</span><span class="p">)</span> <span class="p">{</span>
+
+     <span class="k">val</span> <span class="py">CHAR_NULL</span> <span class="p">=</span> <span class="err">&#39;</span><span class="err">\</span><span class="n">u0000</span><span class="err">&#39;</span>
+
+     <span class="k">val</span> <span class="py">lastIndex</span> <span class="p">=</span> <span class="n">size</span> <span class="p">-</span> <span class="n">position</span> <span class="p">-</span> <span class="m">1</span>
+
+     <span class="k">val</span> <span class="py">pre2Char</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="n">sentence</span><span class="p">[</span><span class="n">position</span> <span class="p">-</span> <span class="m">2</span><span class="p">]</span> <span class="k">else</span> <span class="n">CHAR_NULL</span>
+     <span class="k">val</span> <span class="py">preChar</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">sentence</span><span class="p">[</span><span class="n">position</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">CHAR_NULL</span>
+     <span class="k">val</span> <span class="py">curChar</span> <span class="p">=</span> <span class="n">sentence</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+     <span class="k">val</span> <span class="py">nextChar</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">lastIndex</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">sentence</span><span class="p">[</span><span class="n">position</span> <span class="p">+</span> <span class="m">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">CHAR_NULL</span>
+     <span class="k">val</span> <span class="py">next2Char</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">lastIndex</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="n">sentence</span><span class="p">[</span><span class="n">position</span> <span class="p">+</span> <span class="m">2</span><span class="p">]</span> <span class="k">else</span> <span class="n">CHAR_NULL</span>
+
+     <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+     <span class="n">buffer</span><span class="p">.</span><span class="n">set2</span><span class="p">(</span><span class="n">curChar</span><span class="p">,</span> <span class="sc">&#39;2&#39;</span><span class="p">)</span>
+     <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+
+     <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+         <span class="n">buffer</span><span class="p">.</span><span class="n">set2</span><span class="p">(</span><span class="n">preChar</span><span class="p">,</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+         <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+
+         <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+         <span class="n">buffer</span><span class="p">.</span><span class="n">set4</span><span class="p">(</span><span class="n">preChar</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">,</span> <span class="n">curChar</span><span class="p">,</span> <span class="sc">&#39;5&#39;</span><span class="p">)</span>
+         <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+
+         <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+             <span class="n">buffer</span><span class="p">.</span><span class="n">set4</span><span class="p">(</span><span class="n">pre2Char</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">,</span> <span class="n">preChar</span><span class="p">,</span> <span class="sc">&#39;4&#39;</span><span class="p">)</span>
+             <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+
+     <span class="k">if</span> <span class="p">(</span><span class="n">lastIndex</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+         <span class="n">buffer</span><span class="p">.</span><span class="n">set2</span><span class="p">(</span><span class="n">nextChar</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">)</span>
+         <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+
+         <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+         <span class="n">buffer</span><span class="p">.</span><span class="n">set4</span><span class="p">(</span><span class="n">curChar</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">,</span> <span class="n">nextChar</span><span class="p">,</span> <span class="sc">&#39;6&#39;</span><span class="p">)</span>
+         <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+
+         <span class="k">if</span> <span class="p">(</span><span class="n">lastIndex</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="p">)</span>
+             <span class="n">buffer</span><span class="p">.</span><span class="n">set4</span><span class="p">(</span><span class="n">nextChar</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">,</span> <span class="n">next2Char</span><span class="p">,</span> <span class="sc">&#39;7&#39;</span><span class="p">)</span>
+             <span class="n">emit</span><span class="p">(</span><span class="p">)</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="k">override</span> <span class="k">fun</span> <span class="nf">inputList2InputSeq</span><span class="p">(</span><span class="n">list</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Char</span><span class="p">&gt;</span><span class="p">)</span><span class="p">:</span> <span class="n">CharArray</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="n">list</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="p">)</span>
+ <span class="p">}</span>
+
+ <span class="cm">/**
+</span><span class="cm">  * &#34;世界 你好&#34; =&gt; 世/B 界/E 你/B 好/E
+</span><span class="cm">  * B M S E
+</span><span class="cm">  */</span>
+ <span class="k">override</span> <span class="k">fun</span> <span class="nf">annotateText</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Pair</span><span class="p">&lt;</span><span class="n">Char</span><span class="p">,</span> <span class="n">String</span><span class="p">&gt;</span><span class="p">&gt;</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="n">text</span><span class="p">.</span><span class="n">splitToSequence</span><span class="p">(</span><span class="sc">&#39;﹍&#39;</span><span class="p">)</span>
+             <span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">word</span> <span class="p">-</span><span class="p">&gt;</span>
+                 <span class="k">when</span> <span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="m">0</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">emptyList</span><span class="p">(</span><span class="p">)</span>
+                     <span class="m">1</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">listOf</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;S&#34;</span><span class="p">)</span>
+                     <span class="m">2</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">listOf</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;E&#34;</span><span class="p">)</span>
+                     <span class="m">3</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">listOf</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;E&#34;</span><span class="p">)</span>
+                     <span class="m">4</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">listOf</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">3</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;E&#34;</span><span class="p">)</span>
+                     <span class="m">5</span> <span class="p">-</span><span class="p">&gt;</span> <span class="n">listOf</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">3</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="m">4</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;E&#34;</span><span class="p">)</span>
+                     <span class="k">else</span> <span class="p">-</span><span class="p">&gt;</span> <span class="p">{</span>
+                         <span class="k">val</span> <span class="py">list</span> <span class="p">=</span> <span class="n">ArrayList</span><span class="p">&lt;</span><span class="n">Pair</span><span class="p">&lt;</span><span class="n">Char</span><span class="p">,</span> <span class="n">String</span><span class="p">&gt;</span><span class="p">&gt;</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+                         <span class="n">list</span> <span class="p">+</span><span class="p">=</span> <span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;B&#34;</span>
+                         <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span> <span class="n">until</span> <span class="n">word</span><span class="p">.</span><span class="n">length</span> <span class="p">-</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+                             <span class="n">list</span> <span class="p">+</span><span class="p">=</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;M&#34;</span>
+                         <span class="p">}</span>
+                         <span class="n">list</span> <span class="p">+</span><span class="p">=</span> <span class="n">word</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="n">to</span> <span class="s">&#34;E&#34;</span>
+                         <span class="n">list</span><span class="p">.</span><span class="n">toList</span><span class="p">(</span><span class="p">)</span>
+                     <span class="p">}</span>
+                 <span class="p">}</span><span class="p">.</span><span class="n">asSequence</span><span class="p">(</span><span class="p">)</span>
+             <span class="p">}</span><span class="p">.</span><span class="n">toList</span><span class="p">(</span><span class="p">)</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fun</span> <span class="nf">pinyinSplitEvaluateFun</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="n">Int</span><span class="p">,</span><span class="n">model</span><span class="p">:</span><span class="n">Perceptron</span><span class="p">,</span><span class="n">sampleList</span><span class="p">:</span><span class="n">List</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span><span class="p">)</span><span class="p">:</span><span class="n">EvaluateResult</span><span class="p">{</span>
+ <span class="k">var</span> <span class="py">count</span> <span class="p">=</span> <span class="m">0</span>
+ <span class="k">var</span> <span class="py">goldTotal</span> <span class="p">=</span> <span class="m">0</span>
+ <span class="k">var</span> <span class="py">predTotal</span> <span class="p">=</span> <span class="m">0</span>
+
+ <span class="k">var</span> <span class="py">correct</span> <span class="p">=</span> <span class="m">0</span>
+
+ <span class="k">val</span> <span class="py">segmenter</span> <span class="p">=</span> <span class="n">PinyinSplitApp</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+ <span class="k">for</span> <span class="p">(</span><span class="n">line</span> <span class="k">in</span> <span class="n">sampleList</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">val</span> <span class="py">wordArray</span> <span class="p">=</span> <span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#34;﹍&#34;</span><span class="p">)</span>
+     <span class="n">goldTotal</span> <span class="p">+</span><span class="p">=</span> <span class="n">wordArray</span><span class="p">.</span><span class="n">size</span>
+
+     <span class="k">val</span> <span class="py">text</span> <span class="p">=</span> <span class="n">wordArray</span><span class="p">.</span><span class="n">joinToString</span><span class="p">(</span><span class="n">separator</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+     <span class="k">val</span> <span class="py">predArray</span> <span class="p">=</span> <span class="n">segmenter</span><span class="p">.</span><span class="n">decodeToWordList</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+     <span class="n">predTotal</span> <span class="p">+</span><span class="p">=</span> <span class="n">predArray</span><span class="p">.</span><span class="n">size</span>
+
+     <span class="n">correct</span> <span class="p">+</span><span class="p">=</span> <span class="n">wordCorrect</span><span class="p">(</span><span class="n">wordArray</span><span class="p">,</span><span class="n">predArray</span><span class="p">)</span>
+
+     <span class="n">count</span><span class="p">+</span><span class="p">+</span>
+ <span class="p">}</span>
+
+ <span class="k">return</span> <span class="n">EvaluateResult</span><span class="p">(</span><span class="n">goldTotal</span><span class="p">,</span> <span class="n">predTotal</span><span class="p">,</span> <span class="n">correct</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>训练模型</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"> <span class="k">val</span> <span class="py">definition</span> <span class="p">=</span> <span class="n">PinyinSplitDefinition</span><span class="p">(</span><span class="p">)</span>
+ <span class="k">val</span> <span class="py">model</span> <span class="p">=</span> <span class="n">definition</span><span class="p">.</span><span class="n">train</span><span class="p">(</span>
+     <span class="n">File</span><span class="p">(</span><span class="s">&#34;data/pinyin/yuliao_a.txt&#34;</span><span class="p">)</span><span class="p">,</span>
+     <span class="n">File</span><span class="p">(</span><span class="s">&#34;data/pinyin/yuliao_b.txt&#34;</span><span class="p">)</span><span class="p">,</span><span class="m">80</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="k">false</span><span class="p">,</span><span class="o">::</span><span class="n">pinyinSplitEvaluateFun</span><span class="p">)</span>
+
+ <span class="n">model</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s">&#34;data/pinyin/model&#34;</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>语料格式为</p>
+<pre><code>yin﹍shi﹍zhu﹍da﹍jia﹍cang﹍cai﹍mei﹍you﹍jiu﹍sui
+</code></pre><p>模型解码:</p>
+<pre><code>
+class PinyinSplitApp(val model: Perceptron) {
+
+ private val logic = PinyinSplitDefinition()
+
+ fun decodeToWordList(sentence: String): List&lt;String&gt; {
+     val result = ArrayList&lt;String&gt;()
+     val input = sentence.toCharArray()
+    
+
+     val output = logic.decodeModel(model, input)
+
+     var p = 0
+     for (i in 0 until output.size) {
+         val f = output[i]
+         if (f == &quot;S&quot; || f == &quot;E&quot;) {
+             result += sentence.substring(p, i + 1)
+             p = i + 1
+         }
+     }
+     if (p &lt; sentence.length) {
+         result += sentence.substring(p, sentence.length)
+     }
+
+     return result
+ }
+
+ companion object {
+
+     const val modelPrefix = &quot;pinyin-split-model&quot;
+
+     fun load(file: File):PinyinSplitApp {
+         return PinyinSplitApp(PerceptronModel.load(file))
+     }
+
+     fun loadDefault():PinyinSplitApp{
+         return PinyinSplitApp(PerceptronModel.loadFromNlpResouce(modelPrefix))
+     }
+ }
+}
+</code></pre><p>测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">app</span> <span class="p">=</span> <span class="n">PinyinSplitApp</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s">&#34;data/pinyin/model&#34;</span><span class="p">)</span>
+<span class="k">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">app</span><span class="p">.</span><span class="n">decodeToWordList</span><span class="p">(</span><span class="s">&#34;shujubianhuaqushidengxiangguanxinxi&#34;</span><span class="p">)</span>
+</code></pre></div><p>输出</p>
+<pre><code>shu, ju, bian, hua, qu, shi, deng, xiang, guan, xin, xi
+</code></pre><div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/" title="结构化感知机"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 结构化感知机</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/" title="处方">Next - 处方 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">起步</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/mynlp/">分词</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/pos/">词性标注</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/resources/">资源加载</a></li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/">结构化感知机</a>
+  
+<ul class="sub-menu">
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/">拼音流切分示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/">处方</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E8%AF%8D%E7%B2%92%E5%BA%A6/">自定义分词粒度</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/correction/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/index-seg/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/lexer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/ner/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/">AtomSplitAlgorithm</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/core/">Core分词</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/wordnet/">Wordnet和Wordpath</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/personname/">人名识别</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/component/">基础组件</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/">感知机分词器</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/">核心概念</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/customdict/">用户自定义词典</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

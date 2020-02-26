@@ -3,11 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/getting-started/</loc>
-  </url>
-  
-  <url>
-    <loc>https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
   </url>
   
   <url>
@@ -19,15 +15,27 @@
   </url>
   
   <url>
+    <loc>https://mayabot.github.io/mynlp-doc/getting-started/</loc>
+  </url>
+  
+  <url>
     <loc>https://mayabot.github.io/mynlp-doc/getting-started/segment/</loc>
   </url>
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/perceptron/example/</loc>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/</loc>
   </url>
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/lexer/</loc>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/pos/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/resources/</loc>
   </url>
   
   <url>
@@ -39,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://mayabot.github.io/mynlp-doc/perceptron/</loc>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/perceptron/</loc>
   </url>
   
   <url>
@@ -75,8 +83,45 @@
   </url>
   
   <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E8%AF%8D%E7%B2%92%E5%BA%A6/</loc>
+  </url>
+  
+  <url>
     <loc>https://mayabot.github.io/mynlp-doc/</loc>
     <lastmod>2017-10-17T15:26:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/correction/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/index-seg/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/lexer/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/ner/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/</loc>
   </url>
   
   <url>
@@ -84,7 +129,19 @@
   </url>
   
   <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/core/</loc>
+  </url>
+  
+  <url>
     <loc>https://mayabot.github.io/mynlp-doc/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/wordnet/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/personname/</loc>
   </url>
   
   <url>
@@ -92,7 +149,23 @@
   </url>
   
   <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/component/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/</loc>
+  </url>
+  
+  <url>
     <loc>https://mayabot.github.io/mynlp-doc/others/log/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mayabot.github.io/mynlp-doc/mynlp/customdict/</loc>
   </url>
   
   <url>

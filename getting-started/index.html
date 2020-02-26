@@ -3,7 +3,8 @@
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Getting Started - Mynlp文档</title>
+<title>起步 - Mynlp文档</title>
+<meta name="description" content="">
 <meta name="generator" content="Hugo 0.64.1" />
 <link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
 <link rel="canonical" href="https://mayabot.github.io/mynlp-doc/getting-started/">
@@ -21,7 +22,7 @@
   gtag('config', 'UA-388690-17');
 </script>
 <style>
-:root {--custom-font-color: #FFFFF3;--custom-background-color: #566270;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+:root {--custom-font-color: #ededed;--custom-background-color: #142850;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
 
 }
 
@@ -34,12 +35,19 @@
   padding: 10px 8px;
   background-color: #404040;
 }
+header h1{
+    font-size: 35px;
+}
 .sidebar a {
     font-size: 110%;
     color: #2e7eb3;
 }
 .sidebar{
-    flex: 0 0 15%;
+    flex: 0 0 20%;
+}
+
+.sidebar a {
+    color: #27496d;
 }
 
 .sidebar li {
@@ -58,20 +66,29 @@ table,.highlight{
 }
 
 </style>
-<meta property="og:title" content="Getting Started" />
+
+
+<style>
+
+    .chroma { background-color: #ffffff } .chroma .err { color: #a61717; background-color: #e3d2d2 } .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; } .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; } .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 } .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .k { color: #000000; font-weight: bold } .chroma .kc { color: #000000; font-weight: bold } .chroma .kd { color: #000000; font-weight: bold } .chroma .kn { color: #000000; font-weight: bold } .chroma .kp { color: #000000; font-weight: bold } .chroma .kr { color: #000000; font-weight: bold } .chroma .kt { color: #445588; font-weight: bold } .chroma .na { color: #008080 } .chroma .nb { color: #0086b3 } .chroma .bp { color: #999999 } .chroma .nc { color: #445588; font-weight: bold } .chroma .no { color: #008080 } .chroma .nd { color: #3c5d5d; font-weight: bold } .chroma .ni { color: #800080 } .chroma .ne { color: #990000; font-weight: bold } .chroma .nf { color: #990000; font-weight: bold } .chroma .nl { color: #990000; font-weight: bold } .chroma .nn { color: #555555 } .chroma .nt { color: #000080 } .chroma .nv { color: #008080 } .chroma .vc { color: #008080 } .chroma .vg { color: #008080 } .chroma .vi { color: #008080 } .chroma .s { color: #dd1144 } .chroma .sa { color: #dd1144 } .chroma .sb { color: #dd1144 } .chroma .sc { color: #dd1144 } .chroma .dl { color: #dd1144 } .chroma .sd { color: #dd1144 } .chroma .s2 { color: #dd1144 } .chroma .se { color: #dd1144 } .chroma .sh { color: #dd1144 } .chroma .si { color: #dd1144 } .chroma .sx { color: #dd1144 } .chroma .sr { color: #009926 } .chroma .s1 { color: #dd1144 } .chroma .ss { color: #990073 } .chroma .m { color: #009999 } .chroma .mb { color: #009999 } .chroma .mf { color: #009999 } .chroma .mh { color: #009999 } .chroma .mi { color: #009999 } .chroma .il { color: #009999 } .chroma .mo { color: #009999 } .chroma .o { color: #000000; font-weight: bold } .chroma .ow { color: #000000; font-weight: bold } .chroma .c { color: #999988; font-style: italic } .chroma .ch { color: #999988; font-style: italic } .chroma .cm { color: #999988; font-style: italic } .chroma .c1 { color: #999988; font-style: italic } .chroma .cs { color: #999999; font-weight: bold; font-style: italic } .chroma .cp { color: #999999; font-weight: bold; font-style: italic } .chroma .cpf { color: #999999; font-weight: bold; font-style: italic } .chroma .gd { color: #000000; background-color: #ffdddd } .chroma .ge { color: #000000; font-style: italic } .chroma .gr { color: #aa0000 } .chroma .gh { color: #999999 } .chroma .gi { color: #000000; background-color: #ddffdd } .chroma .go { color: #888888 } .chroma .gp { color: #555555 } .chroma .gs { font-weight: bold } .chroma .gu { color: #aaaaaa } .chroma .gt { color: #aa0000 } .chroma .gl { text-decoration: underline } .chroma .w { color: #bbbbbb }
+    .chroma {
+        color: inherit;
+        background-color: #ededed;
+    }
+</style><meta property="og:title" content="起步" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Getting Started"/>
+<meta name="twitter:title" content="起步"/>
 <meta name="twitter:description" content=""/>
-<meta itemprop="name" content="Getting Started">
+<meta itemprop="name" content="起步">
 <meta itemprop="description" content=""></head>
 <body><div class="container"><header>
-<h1>Mynlp文档</h1>
+<h1><i class="fab fa-meetup"></i> Mynlp文档</h1>
 
- <span class="version">Version 3.x</span>
+ <span class="version"> &nbsp;&nbsp; Last Version 3.1.0</span>
 <a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
 </header>
 <div class="global-menu">
@@ -79,15 +96,134 @@ table,.highlight{
 <ul>
 <li><a href="/mynlp-doc/">Mynlp文档</a></li>
 <li><a href="/mynlp-doc/demo">在线演示</a></li>
-<li><a href="http://blog.mayabot.com">Blog</a></li></ul>
+<li><a href="http://blog.mayabot.com">博客</a></li></ul>
 </nav>
 </div>
 <div class="content-container">
-<main><h1>Getting Started</h1><div class="edit-meta">
+<main><h1>起步</h1><h1 id="quick-tutorial">Quick Tutorial</h1>
+<h3 id="installation">Installation</h3>
+<p>mynlp由多模块构成，每个模块都发行JAR到maven仓库中（<code>groupId=com.mayabot.mynlp</code>），您可以直接在项目中引用。</p>
+<table>
+<thead>
+<tr>
+<th>模块（artifactId）</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mynlp-core</td>
+<td>基础功能 Guice、logger、资源、基础数据结构和算法</td>
+</tr>
+<tr>
+<td>mynlp-segment</td>
+<td>中文分词</td>
+</tr>
+<tr>
+<td>mynlp-pinyin</td>
+<td>文字转拼音</td>
+</tr>
+<tr>
+<td>mynlp-transform</td>
+<td>繁简体互转</td>
+</tr>
+<tr>
+<td>mynlp-classification</td>
+<td>文本分类</td>
+</tr>
+<tr>
+<td>mynlp-summary</td>
+<td>文本摘要</td>
+</tr>
+<tr>
+<td>mynlp-perceptron</td>
+<td>感知机</td>
+</tr>
+</tbody>
+</table>
+<p>如使用分词功能，只需要引入:</p>
+<pre><code>    &lt;dependency&gt;
+      &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt;
+      &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt;
+      &lt;version&gt;2.0.0&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre><blockquote>
+<p>version请使用Maven仓库中最新版本</p>
+</blockquote>
+<blockquote>
+<p>如果你比较懒，引入<code>mynlp-all</code>一个JAR包，即可包括分词、拼音、感知机、简繁体这些功能。</p>
+</blockquote>
+<h2 id="分词">分词</h2>
+<h3 id="core分词">Core分词</h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpTokenizer</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizers</span><span class="o">.</span><span class="na">coreTokenizer</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">Sentence</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;早上好&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">asWordList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>coreTokenizer返回的是CORE分词器，它以二元语言模型+Viterbi为基础的分词算法，特点是高性能、排除歧义、高度自定义，
+适应大部分场景。</p>
+<p><code>MynlpTokenizer</code>是分词算法的通用接口，它是多线程安全的，相同功能的MynlpTokenizer只需要一个实例即可。
+MynlpTokenizer接口关注的是如何把长度有限的一小段文本进行分词。</p>
+<p>MynlpTokenizer关注对有限长度的字符串进行分词计算，比如一句话分词。</p>
+<p>那么如果需要对打断文本进行分词，那么MynlpTokenizer就不能胜任了，因为它会消耗不确定大的内存。
+<code>MynlpAnalyzer</code>是面向Reader的分词接口，它关注无限长度的文本进行分词，同时提供过过滤器功能（停用词和标点符号）,是对MynlpTokenizer接口的上层包装。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpAnalyzer</span> <span class="n">analyzer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMynlpAnalyzer</span><span class="o">(</span><span class="n">Tokenizers</span><span class="o">.</span><span class="na">coreTokenizer</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringReader</span><span class="o">(</span><span class="s">&#34;假装这是一个大文本&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WordTerm</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">reader</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><blockquote>
+<p>MynlpAnalyzer也是线程安全的，相同逻辑单例即可。MynlpAnalyzer返回的Iterable或Stream是延迟计算的。</p>
+</blockquote>
+<h3 id="cws感知机分词">CWS感知机分词</h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpTokenizer</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizers</span><span class="o">.</span><span class="na">cwsTokenizer</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">Sentence</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;委内瑞拉总统马杜罗表示他支持议会选举提前到今年举行&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">asWordList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>感知机分词器是面向字符序列标注的分词器算法。cwsTokenizer方法返回一个新的感知机分词器实例。</p>
+<p>如你所见和Core分词示例相比，只是Tokenizers构建方法调用不一样，其他的API都保持不变。</p>
+<h3 id="自定义选项">自定义选项</h3>
+<p>Tokenizers.coreTokenizer和cwsTokenizer只是返回一个预定义的分词算法实例。你还可以通过Builder创建自定义选项的分词器。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpTokenizer</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizers</span><span class="o">.</span><span class="na">coreTokenizerBuilder</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">setEnablePOS</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>阅读【中文分词】章节的文档，了解更多高级定制的方法和技巧。</p>
+<h2 id="文本分类">文本分类</h2>
+<p>文本分类使用了Facebook的FastText算法，java版本fasttext实现已经剥离到另一个项目<a href="https://github.com/mayabot/fastText4j">fastText4j</a>。
+这里提供一个开箱即用的分类API，你只需要给出无需预先分词语料即可训练分类模型。</p>
+<p>语料的格式可以是：</p>
+<blockquote>
+<p>__label__pos 一般设施不错其他一般早餐也不错<!-- raw HTML omitted -->
+__label__neg 服务极差价格高地点环境偏房间条件能有一星</p>
+</blockquote>
+<p>其中__label__是分类标签的前缀。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">FastText</span> <span class="n">model</span> <span class="o">=</span> <span class="n">FasttextClassification</span><span class="o">.</span><span class="na">train</span><span class="o">(</span><span class="n">trainFile</span><span class="o">,</span> <span class="n">100</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span><span class="o">;</span>
+<span class="n">model</span><span class="o">.</span><span class="na">saveModel</span><span class="o">(</span><span class="s">&#34;example.data/hotel.model&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>第一行是训练模型，第二行是保存模型文件，就是这么简单。这里给出的三个参数是向量维度、学习率、epoch。
+你可以通过TrainArgs传递更为复杂的参数给训练器，这些参数和Facebook原版的Fasttext算法一致。</p>
+<p>有了训练模型，我们就可以进行预测了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">FastText</span> <span class="n">model</span> <span class="o">=</span> <span class="n">FastText</span><span class="o">.</span><span class="na">loadModel</span><span class="o">(</span><span class="s">&#34;example.data/hotel.model&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">FasttextClassification</span><span class="o">.</span><span class="na">predict</span><span class="o">(</span><span class="n">model</span><span class="o">,</span> <span class="s">&#34;两间房只给两条毛巾加一条毛巾要收费5元太过份吧&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>第一行加载模型，第二行就可以进行预测了。</p>
+<p>Fasttext除了进行文本分类外，另外很大的作用是进行词向量训练。</p>
+<h2 id="拼音">拼音</h2>
+<p>如果你么有自定需求，那么只需如下调用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">PinyinResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Pinyins</span><span class="o">.</span><span class="na">convert</span><span class="o">(</span><span class="s">&#34;招商银行推出朝朝盈理财产品&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>PinyinResult是转换结果，你可以通过这对象，返回完整拼写列表、缩写列表、是否归一模糊拼音等结果。
+pinyin模块还支持配置扩展多音词词典文件、动态添加多音词等功能，详见<a href="Pinyin">文字转拼音</a>。</p>
+<h2 id="简繁转换">简繁转换</h2>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Simplified2Traditional</span> <span class="n">s2t</span> <span class="o">=</span> <span class="n">TransformService</span><span class="o">.</span><span class="na">simplified2Traditional</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">s2t</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="s">&#34;软件和体育的艺术&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>繁体转简体</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Traditional2Simplified</span> <span class="n">t2s</span> <span class="o">=</span> <span class="n">TransformService</span><span class="o">.</span><span class="na">traditional2Simplified</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">t2s</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="s">&#34;軟件和體育的藝術&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><h2 id="文本摘要">文本摘要</h2>
+<p>文本摘要包含了两个简单TextRank的实现。</p>
+<p>关键字摘要</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">KeywordSummary</span> <span class="n">keywordSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeywordSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">keywordSummary</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;text&#34;</span><span class="o">,</span><span class="n">10</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>句子摘要</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">SentenceSummary</span> <span class="n">sentenceSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SentenceSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sentenceSummary</span><span class="o">.</span><span class="na">summarySentences</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="n">10</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>KeywordSummary和SentenceSummary内置了默认的分词实现，你可以配置自定义的MynlpAnalyzer对象。</p>
+<div class="edit-meta">
 
 <br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp文档首页"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp文档首页</a>
 <a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-</nav><footer><p class="powered">Powered by <a href="https://gohugo.io">Hugo</a>. Theme by <a href="https://themes.gohugo.io/hugo-theme-techdoc/">TechDoc</a>. Designed by <a href="https://github.com/thingsym/hugo-theme-techdoc">Thingsym</a>.</p>
+</nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
 </footer>
 </main><div class="sidebar">
 
@@ -95,19 +231,50 @@ table,.highlight{
 <ul>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
 
-<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">Getting Started</a>
+<li class="parent active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/">起步</a>
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">中文分词API示例</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
 </ul>
   
 </li>
 
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/">词法分析</a>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/">分词</a>
   
 <ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/lexer/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/pos/">词性标注</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/resources/">资源加载</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/">结构化感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/">拼音流切分示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/">处方</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E8%AF%8D%E7%B2%92%E5%BA%A6/">自定义分词粒度</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/correction/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/index-seg/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/lexer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/ner/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/">AtomSplitAlgorithm</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/core/">Core分词</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/wordnet/">Wordnet和Wordpath</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/personname/">人名识别</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/component/">基础组件</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/">感知机分词器</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/">核心概念</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/customdict/">用户自定义词典</a></li>
 </ul>
   
 </li>
@@ -130,14 +297,6 @@ table,.highlight{
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
-</ul>
-  
-</li>
-
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/">感知机</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/perceptron/example/">感知机应用示例-拼音流切分</a></li>
 </ul>
   
 </li>

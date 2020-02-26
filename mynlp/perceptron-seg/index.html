@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>感知机分词器 - Mynlp文档</title>
+<meta name="description" content="">
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #ededed;--custom-background-color: #142850;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+header h1{
+    font-size: 35px;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 20%;
+}
+
+.sidebar a {
+    color: #27496d;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+
+
+<style>
+
+    .chroma { background-color: #ffffff } .chroma .err { color: #a61717; background-color: #e3d2d2 } .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; } .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; } .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 } .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .k { color: #000000; font-weight: bold } .chroma .kc { color: #000000; font-weight: bold } .chroma .kd { color: #000000; font-weight: bold } .chroma .kn { color: #000000; font-weight: bold } .chroma .kp { color: #000000; font-weight: bold } .chroma .kr { color: #000000; font-weight: bold } .chroma .kt { color: #445588; font-weight: bold } .chroma .na { color: #008080 } .chroma .nb { color: #0086b3 } .chroma .bp { color: #999999 } .chroma .nc { color: #445588; font-weight: bold } .chroma .no { color: #008080 } .chroma .nd { color: #3c5d5d; font-weight: bold } .chroma .ni { color: #800080 } .chroma .ne { color: #990000; font-weight: bold } .chroma .nf { color: #990000; font-weight: bold } .chroma .nl { color: #990000; font-weight: bold } .chroma .nn { color: #555555 } .chroma .nt { color: #000080 } .chroma .nv { color: #008080 } .chroma .vc { color: #008080 } .chroma .vg { color: #008080 } .chroma .vi { color: #008080 } .chroma .s { color: #dd1144 } .chroma .sa { color: #dd1144 } .chroma .sb { color: #dd1144 } .chroma .sc { color: #dd1144 } .chroma .dl { color: #dd1144 } .chroma .sd { color: #dd1144 } .chroma .s2 { color: #dd1144 } .chroma .se { color: #dd1144 } .chroma .sh { color: #dd1144 } .chroma .si { color: #dd1144 } .chroma .sx { color: #dd1144 } .chroma .sr { color: #009926 } .chroma .s1 { color: #dd1144 } .chroma .ss { color: #990073 } .chroma .m { color: #009999 } .chroma .mb { color: #009999 } .chroma .mf { color: #009999 } .chroma .mh { color: #009999 } .chroma .mi { color: #009999 } .chroma .il { color: #009999 } .chroma .mo { color: #009999 } .chroma .o { color: #000000; font-weight: bold } .chroma .ow { color: #000000; font-weight: bold } .chroma .c { color: #999988; font-style: italic } .chroma .ch { color: #999988; font-style: italic } .chroma .cm { color: #999988; font-style: italic } .chroma .c1 { color: #999988; font-style: italic } .chroma .cs { color: #999999; font-weight: bold; font-style: italic } .chroma .cp { color: #999999; font-weight: bold; font-style: italic } .chroma .cpf { color: #999999; font-weight: bold; font-style: italic } .chroma .gd { color: #000000; background-color: #ffdddd } .chroma .ge { color: #000000; font-style: italic } .chroma .gr { color: #aa0000 } .chroma .gh { color: #999999 } .chroma .gi { color: #000000; background-color: #ddffdd } .chroma .go { color: #888888 } .chroma .gp { color: #555555 } .chroma .gs { font-weight: bold } .chroma .gu { color: #aaaaaa } .chroma .gt { color: #aa0000 } .chroma .gl { text-decoration: underline } .chroma .w { color: #bbbbbb }
+    .chroma {
+        color: inherit;
+        background-color: #ededed;
+    }
+</style><meta property="og:title" content="感知机分词器" />
+<meta property="og:description" content="感知机分词器 感知机分词是基于字符序列标注的，mynlp提供了一个基于语料库字数7000万训练得到的模型。压缩后模型大小65M。 运行时占内存1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="感知机分词器"/>
+<meta name="twitter:description" content="感知机分词器 感知机分词是基于字符序列标注的，mynlp提供了一个基于语料库字数7000万训练得到的模型。压缩后模型大小65M。 运行时占内存1"/>
+<meta itemprop="name" content="感知机分词器">
+<meta itemprop="description" content="感知机分词器 感知机分词是基于字符序列标注的，mynlp提供了一个基于语料库字数7000万训练得到的模型。压缩后模型大小65M。 运行时占内存1">
+
+<meta itemprop="wordCount" content="1101">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1><i class="fab fa-meetup"></i> Mynlp文档</h1>
+
+ <span class="version"> &nbsp;&nbsp; Last Version 3.1.0</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">博客</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>感知机分词器</h1>
+<h2 id="感知机分词器">感知机分词器</h2>
+<p>感知机分词是基于字符序列标注的，mynlp提供了一个基于语料库字数7000万训练得到的模型。压缩后模型大小65M。
+运行时占内存185M。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Lexers</span><span class="o">.</span><span class="na">perceptronBuilder</span><span class="o">(</span><span class="o">)</span>
+       <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span>
+       <span class="o">.</span><span class="na">withNer</span><span class="o">(</span><span class="o">)</span>
+       <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>
+       <span class="c1">//.withCustomDictionary()
+</span><span class="c1"></span>        <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>构建一个感知机为基础算法的Lexer实例对象。</p>
+<h3 id="资源包">资源包</h3>
+<p>默认mynlp-segment包没有默认导入资源JAR。</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">compile &#39;com.mayabot.mynlp.resource:mynlp-resource-cws:1.0.0&#39;
+</code></pre></div><p>MAVEN</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp.resource<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-resource-cws<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>JAR文件稍大，最后参照<a href="resource">词典和模型资源</a>中maven仓库国内镜像，加快下载。</p>
+<p>模型基于语料库字数7000万训练得到的模型。压缩后模型大小65M。运行时占内存185M。</p>
+<h3 id="cwsservice">CwsService</h3>
+<p>核心底层服务是由CwsService直接提供的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">CwsService</span> <span class="n">cwsService</span> <span class="o">=</span> <span class="n">Mynlps</span><span class="o">.</span><span class="na">instanceOf</span><span class="o">(</span><span class="n">CwsService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strings</span> <span class="o">=</span> <span class="n">cwsService</span><span class="o">.</span><span class="na">splitWord</span><span class="o">(</span><span class="s">&#34;非受限的调度器是一种高级机制&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><h3 id="在线学习">在线学习</h3>
+<p>感知机一个优点在于支持在线学习。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cwsService</span><span class="o">.</span><span class="na">splitWord</span><span class="o">(</span><span class="s">&#34;下雨天地面积水&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+        <span class="n">cwsService</span><span class="o">.</span><span class="na">getPerceptron</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">learn</span><span class="o">(</span><span class="s">&#34;下雨天 地面 积水&#34;</span><span class="o">)</span><span class="o">;</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cwsService</span><span class="o">.</span><span class="na">splitWord</span><span class="o">(</span><span class="s">&#34;下雨天地面积水&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><h3 id="hanlp对比">hanlp对比</h3>
+<p>感知机算法实现参考自hanlp，这里独立提取了感知机逻辑，并优化了性能，也提供了易用的自定义框架，参考<a href="perceptron">感知机</a></p>
+<p>在分词模型训练部分，吸取hanlp感知机不能很好处理空格的问题，在训练语料上做了hack，能更好地处理文本中空格对分词结果的
+影响。同时在训练模型的语料中，尽量统一时间、数量词的一致性。</p>
+<blockquote>
+<p>一般分词语料中使用空格作为词之间的分割符号，造成训练语料中根本不会遇见空格字符，所以在实际分词时就不认识空格。
+mynlp中的做法是，对分词语料进行预处理使用﹍代替空格，按概率随机转换一定数量的逗号、句号为空格。</p>
+</blockquote>
+<h3 id="训练模型">训练模型</h3>
+<p>语料格式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">我们﹍已经﹍知道﹍,﹍在﹍地壳﹍里﹍,﹍硅﹍的﹍含量﹍在﹍所有﹍元素﹍中﹍居﹍第二﹍位﹍ ﹍仅次于﹍氧﹍。
+我们﹍知道﹍,﹍在﹍18﹍世纪﹍以前﹍,﹍在﹍科学﹍的﹍视野﹍里﹍ ﹍宇宙﹍实际上﹍只是﹍太阳系﹍。
+</code></pre></div><p>训练代码（kotlin）</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"> <span class="k">val</span> <span class="py">trainer</span> <span class="p">=</span> <span class="n">CWSPerceptronTrainer</span><span class="p">(</span><span class="p">)</span>
+
+<span class="k">val</span> <span class="py">trainFile</span> <span class="p">=</span> <span class="n">File</span><span class="p">(</span><span class="s">&#34;data.work/cws/pku&#34;</span><span class="p">)</span> <span class="c1">//语料文件所在目录
+</span><span class="c1"></span><span class="k">val</span> <span class="py">evaluateFile</span> <span class="p">=</span> <span class="n">File</span><span class="p">(</span><span class="s">&#34;data.work/cws/pku/199801.txt&#34;</span><span class="p">)</span> <span class="c1">//评估语料
+</span><span class="c1"></span>
+<span class="k">val</span> <span class="py">cws</span> <span class="p">=</span> <span class="n">trainer</span><span class="p">.</span><span class="n">train</span><span class="p">(</span>
+        <span class="n">trainFile</span><span class="p">,</span>
+        <span class="n">evaluateFile</span><span class="p">,</span>
+        <span class="m">150</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&#34;compress&#34;</span><span class="p">)</span>
+<span class="n">cws</span><span class="p">.</span><span class="n">compress</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span> <span class="m">1e-3</span><span class="p">)</span> <span class="c1">//压缩
+</span><span class="c1"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&#34;After compress ...&#34;</span><span class="p">)</span>
+<span class="n">CWSEvaluate</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">evaluateFile</span><span class="p">.</span><span class="n">readLines</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">cws</span><span class="p">)</span>
+
+<span class="n">cws</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s">&#34;cws-model&#34;</span><span class="p">)</span><span class="p">)</span>
+
+</code></pre></div><h3 id="性能">性能</h3>
+<p>在2.6 GHz Intel Core i7的Mac pro上，预热一遍后，对红楼梦文本2.6M文件进行测试。<!-- raw HTML omitted --></p>
+<blockquote>
+<p>耗时 777 ms , 速度 1153450字/秒</p>
+</blockquote>
+<p>速度为115万字/秒,是Core算法的1/2左右。</p>
+<p>和其他分词器是对比是需要注意的是，上面的代码逻辑包含了对数字、英文、中文数字、量词、email、日期等固定模式的处理，
+mynlp在固定模式规则上特有的处理方式给性能提供了绝对的保证。</p>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/mynlp/component/" title="基础组件"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 基础组件</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/" title="核心概念">Next - 核心概念 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">起步</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/mynlp/">分词</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/pos/">词性标注</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/resources/">资源加载</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/">结构化感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/">拼音流切分示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/">处方</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E8%AF%8D%E7%B2%92%E5%BA%A6/">自定义分词粒度</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/correction/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/index-seg/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/lexer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/ner/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/">AtomSplitAlgorithm</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/core/">Core分词</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/wordnet/">Wordnet和Wordpath</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/personname/">人名识别</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/component/">基础组件</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/">感知机分词器</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/">核心概念</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/customdict/">用户自定义词典</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

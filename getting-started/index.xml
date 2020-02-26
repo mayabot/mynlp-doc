@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Getting Started on Mynlp文档</title>
+    <title>起步 on Mynlp文档</title>
     <link>https://mayabot.github.io/mynlp-doc/getting-started/</link>
-    <description>Recent content in Getting Started on Mynlp文档</description>
+    <description>Recent content in 起步 on Mynlp文档</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
@@ -20,7 +20,7 @@
     </item>
     
     <item>
-      <title>中文分词API示例</title>
+      <title>API概览</title>
       <link>https://mayabot.github.io/mynlp-doc/getting-started/segment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

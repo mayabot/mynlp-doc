@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>结构化感知机 on Mynlp文档</title>
+    <link>https://mayabot.github.io/mynlp-doc/mynlp/perceptron/</link>
+    <description>Recent content in 结构化感知机 on Mynlp文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>拼音流切分示例</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/</guid>
+      <description>定义感知机 class PinyinSplitDefinition : PerceptronDefinition&amp;lt;Char, String, CharArray&amp;gt;() { override val labels = listOf(&amp;#34;B&amp;#34;, &amp;#34;M&amp;#34;, &amp;#34;E&amp;#34;, &amp;#34;S&amp;#34;) override fun labelIndex(label: String): Int { return when (label) { &amp;#34;B&amp;#34; -&amp;gt; 0 &amp;#34;M&amp;#34; -&amp;gt; 1 &amp;#34;E&amp;#34; -&amp;gt; 2 &amp;#34;S&amp;#34; -&amp;gt; 3 else -&amp;gt; 0 } } override fun buffer() = FastStringBuilder(4) override fun featureFunction(sentence: CharArray, size: Int, position: Int, buffer: FastStringBuilder, emit: () -&amp;gt; Unit) { val CHAR_NULL =</description>
+    </item>
+    
+  </channel>
+</rss>

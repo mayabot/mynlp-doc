@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>词性标注 - Mynlp文档</title>
+<meta name="description" content="">
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/mynlp/pos/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #ededed;--custom-background-color: #142850;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+header h1{
+    font-size: 35px;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 20%;
+}
+
+.sidebar a {
+    color: #27496d;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+
+
+<style>
+
+    .chroma { background-color: #ffffff } .chroma .err { color: #a61717; background-color: #e3d2d2 } .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; } .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; } .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 } .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .k { color: #000000; font-weight: bold } .chroma .kc { color: #000000; font-weight: bold } .chroma .kd { color: #000000; font-weight: bold } .chroma .kn { color: #000000; font-weight: bold } .chroma .kp { color: #000000; font-weight: bold } .chroma .kr { color: #000000; font-weight: bold } .chroma .kt { color: #445588; font-weight: bold } .chroma .na { color: #008080 } .chroma .nb { color: #0086b3 } .chroma .bp { color: #999999 } .chroma .nc { color: #445588; font-weight: bold } .chroma .no { color: #008080 } .chroma .nd { color: #3c5d5d; font-weight: bold } .chroma .ni { color: #800080 } .chroma .ne { color: #990000; font-weight: bold } .chroma .nf { color: #990000; font-weight: bold } .chroma .nl { color: #990000; font-weight: bold } .chroma .nn { color: #555555 } .chroma .nt { color: #000080 } .chroma .nv { color: #008080 } .chroma .vc { color: #008080 } .chroma .vg { color: #008080 } .chroma .vi { color: #008080 } .chroma .s { color: #dd1144 } .chroma .sa { color: #dd1144 } .chroma .sb { color: #dd1144 } .chroma .sc { color: #dd1144 } .chroma .dl { color: #dd1144 } .chroma .sd { color: #dd1144 } .chroma .s2 { color: #dd1144 } .chroma .se { color: #dd1144 } .chroma .sh { color: #dd1144 } .chroma .si { color: #dd1144 } .chroma .sx { color: #dd1144 } .chroma .sr { color: #009926 } .chroma .s1 { color: #dd1144 } .chroma .ss { color: #990073 } .chroma .m { color: #009999 } .chroma .mb { color: #009999 } .chroma .mf { color: #009999 } .chroma .mh { color: #009999 } .chroma .mi { color: #009999 } .chroma .il { color: #009999 } .chroma .mo { color: #009999 } .chroma .o { color: #000000; font-weight: bold } .chroma .ow { color: #000000; font-weight: bold } .chroma .c { color: #999988; font-style: italic } .chroma .ch { color: #999988; font-style: italic } .chroma .cm { color: #999988; font-style: italic } .chroma .c1 { color: #999988; font-style: italic } .chroma .cs { color: #999999; font-weight: bold; font-style: italic } .chroma .cp { color: #999999; font-weight: bold; font-style: italic } .chroma .cpf { color: #999999; font-weight: bold; font-style: italic } .chroma .gd { color: #000000; background-color: #ffdddd } .chroma .ge { color: #000000; font-style: italic } .chroma .gr { color: #aa0000 } .chroma .gh { color: #999999 } .chroma .gi { color: #000000; background-color: #ddffdd } .chroma .go { color: #888888 } .chroma .gp { color: #555555 } .chroma .gs { font-weight: bold } .chroma .gu { color: #aaaaaa } .chroma .gt { color: #aa0000 } .chroma .gl { text-decoration: underline } .chroma .w { color: #bbbbbb }
+    .chroma {
+        color: inherit;
+        background-color: #ededed;
+    }
+</style><meta property="og:title" content="词性标注" />
+<meta property="og:description" content="提醒 词性标注API包含在mynlp-segment.jar中。 mynlp词性分词使用的是感知机标注。 这样设计的优点在于： 与核心词典解耦 未登录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/mynlp/pos/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="词性标注"/>
+<meta name="twitter:description" content="提醒 词性标注API包含在mynlp-segment.jar中。 mynlp词性分词使用的是感知机标注。 这样设计的优点在于： 与核心词典解耦 未登录"/>
+<meta itemprop="name" content="词性标注">
+<meta itemprop="description" content="提醒 词性标注API包含在mynlp-segment.jar中。 mynlp词性分词使用的是感知机标注。 这样设计的优点在于： 与核心词典解耦 未登录">
+
+<meta itemprop="wordCount" content="983">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1><i class="fab fa-meetup"></i> Mynlp文档</h1>
+
+ <span class="version"> &nbsp;&nbsp; Last Version 3.1.0</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">博客</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1>词性标注</h1>
+<div class="panel panel-warning"><div class="panel-header">
+<h3>提醒</h3>
+</div><div class="panel-body">
+ 词性标注API包含在mynlp-segment.jar中。
+</div>
+</div>
+
+<p>mynlp词性分词使用的是感知机标注。</p>
+<p>这样设计的优点在于：</p>
+<ul>
+<li>与核心词典解耦</li>
+<li>未登录词的词性</li>
+<li>功能相对独立</li>
+</ul>
+<p>底层调用了<code>PerceptronPosService</code>进行计算。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"> <span class="n">PerceptronPosService</span> <span class="n">service</span> <span class="o">=</span> <span class="n">Mynlps</span><span class="o">.</span><span class="na">instanceOf</span><span class="o">(</span><span class="n">PerceptronPosService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">service</span><span class="o">.</span><span class="na">pos</span><span class="o">(</span><span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span><span class="s">&#34;中国 交响乐团 谭利华 在 布达拉宫 广场 演出&#34;</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+        
+</code></pre></div><p>输出</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[ns, n, nr, p, ns, n, v]
+</code></pre></div><h3 id="安装使用">安装使用</h3>
+<p>字Builder中调用<code>withPOS()</code>即可安装词性分析插件。</p>
+<h3 id="和hanlp的算法差别">和Hanlp的算法差别</h3>
+<p>mynlp的感知机设定了快速解码的模式，也就是忽略词性前后的关联关系，词性只是和当前词，前后词的内容相关，
+而和前后词的词性无关。在这个假设的下，词性解码性能提高数十倍。</p>
+<p>感知机解码复杂度和label的数量有关，如果只是BMES4标签，使用viterbi解码，性能尚可。但是label标签
+数量超过50个时，计算复杂度陡然上升。</p>
+<p>测试下来，相同的语料下，采用快速解码，准确度性能几乎没有损失。</p>
+<h3 id="内存需求">内存需求</h3>
+<p>运行时内存200M</p>
+<h3 id="模型训练">模型训练</h3>
+<p>词性模型也是mynlp在语料库上训练所得，模型大小18M。</p>
+<p>资源文件mynlp-resource-pos.jar默认被mynlp-segment依赖，如果你的项目中不需要词性分析，可以排除此依赖。</p>
+<p>数据源是PKU和cncorpus库。
+准确率从PKU96%降低到93%是因为cncorpus里面人工标注的准确率有下降，也不是同一个时代的标注。</p>
+<pre><code>val model = POSPerceptronTrainer().train(File(&quot;data&quot;), 100, 4)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">#ITER 100/100
+P = 0.930
+use 538902 ms
+
+--------------------
+P = 0.930
+</code></pre></div><h2 id="词性表">词性表</h2>
+<p>mynlp采用的词性标注集，是在北大词性标注集（也是PKU语料库）做了一些少许扩展。</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>形容词</td>
+<td></td>
+</tr>
+<tr>
+<td>Ag</td>
+<td>形语素</td>
+<td></td>
+</tr>
+<tr>
+<td>ad</td>
+<td>副形词</td>
+<td></td>
+</tr>
+<tr>
+<td>an</td>
+<td>名行词</td>
+<td></td>
+</tr>
+<tr>
+<td>b</td>
+<td>区别词</td>
+<td></td>
+</tr>
+<tr>
+<td>Bg</td>
+<td>区别语素</td>
+<td></td>
+</tr>
+<tr>
+<td>c</td>
+<td>连词</td>
+<td></td>
+</tr>
+<tr>
+<td>d</td>
+<td>副词</td>
+<td></td>
+</tr>
+<tr>
+<td>Dg</td>
+<td>副语素</td>
+<td></td>
+</tr>
+<tr>
+<td>e</td>
+<td>叹词</td>
+<td></td>
+</tr>
+<tr>
+<td>f</td>
+<td>方位词</td>
+<td></td>
+</tr>
+<tr>
+<td>h</td>
+<td>前接成分</td>
+<td></td>
+</tr>
+<tr>
+<td>i</td>
+<td>成语</td>
+<td></td>
+</tr>
+<tr>
+<td>j</td>
+<td>简称略语</td>
+<td></td>
+</tr>
+<tr>
+<td>k</td>
+<td>后接成分</td>
+<td></td>
+</tr>
+<tr>
+<td>l</td>
+<td>习用语</td>
+<td></td>
+</tr>
+<tr>
+<td>m</td>
+<td>数词</td>
+<td></td>
+</tr>
+<tr>
+<td>Mg</td>
+<td>数词语素</td>
+<td>甲/Mg</td>
+</tr>
+<tr>
+<td>n</td>
+<td>名词</td>
+<td></td>
+</tr>
+<tr>
+<td>nr</td>
+<td>人名</td>
+<td></td>
+</tr>
+<tr>
+<td>ns</td>
+<td>地名</td>
+<td></td>
+</tr>
+<tr>
+<td>nt</td>
+<td>机构团体</td>
+<td></td>
+</tr>
+<tr>
+<td>nx</td>
+<td>外文字符串</td>
+<td>ＶＣＤ/nx</td>
+</tr>
+<tr>
+<td>nz</td>
+<td>其他专名</td>
+<td></td>
+</tr>
+<tr>
+<td>Ng</td>
+<td>名语素</td>
+<td></td>
+</tr>
+<tr>
+<td>o</td>
+<td>拟声词</td>
+<td></td>
+</tr>
+<tr>
+<td>p</td>
+<td>介词</td>
+<td></td>
+</tr>
+<tr>
+<td>q</td>
+<td>量词</td>
+<td></td>
+</tr>
+<tr>
+<td>r</td>
+<td>代词</td>
+<td></td>
+</tr>
+<tr>
+<td>Rg</td>
+<td>代词语素</td>
+<td>诸/Rg 学者/n</td>
+</tr>
+<tr>
+<td>s</td>
+<td>处所词</td>
+<td></td>
+</tr>
+<tr>
+<td>t</td>
+<td>时间词</td>
+<td>去年/t</td>
+</tr>
+<tr>
+<td>Tg</td>
+<td>时间语素</td>
+<td></td>
+</tr>
+<tr>
+<td>u</td>
+<td>助词</td>
+<td></td>
+</tr>
+<tr>
+<td>v</td>
+<td>动词</td>
+<td></td>
+</tr>
+<tr>
+<td>vd</td>
+<td>副动词</td>
+<td></td>
+</tr>
+<tr>
+<td>vn</td>
+<td>动名词</td>
+<td></td>
+</tr>
+<tr>
+<td>Vg</td>
+<td>动语素</td>
+<td></td>
+</tr>
+<tr>
+<td>w</td>
+<td>标点符号</td>
+<td></td>
+</tr>
+<tr>
+<td>y</td>
+<td>语气词</td>
+<td></td>
+</tr>
+<tr>
+<td>Yg</td>
+<td>语气语素</td>
+<td>唯/d 大力/d 者/k 能/v 致/v 之/u 耳/Yg</td>
+</tr>
+<tr>
+<td>z</td>
+<td>状态词</td>
+<td></td>
+</tr>
+<tr>
+<td>&ndash;下面是&ndash;</td>
+<td>&ndash;扩展&ndash;</td>
+<td></td>
+</tr>
+<tr>
+<td>xx</td>
+<td>非语素字。 ict</td>
+<td></td>
+</tr>
+<tr>
+<td>mq</td>
+<td>数量词</td>
+<td></td>
+</tr>
+<tr>
+<td>x</td>
+<td>字符串。同nx</td>
+<td></td>
+</tr>
+<tr>
+<td>begin</td>
+<td>句子开头</td>
+<td></td>
+</tr>
+<tr>
+<td>end</td>
+<td>句子结尾</td>
+<td></td>
+</tr>
+<tr>
+<td>newWord</td>
+<td>新词</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" title="基本用法"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 基本用法</a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/mynlp/resources/" title="资源加载">Next - 资源加载 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">起步</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/mynlp/">分词</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/mynlp/pos/">词性标注</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/resources/">资源加载</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/">结构化感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/">拼音流切分示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/">处方</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E8%AF%8D%E7%B2%92%E5%BA%A6/">自定义分词粒度</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/correction/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/index-seg/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/lexer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/ner/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/">AtomSplitAlgorithm</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/core/">Core分词</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/wordnet/">Wordnet和Wordpath</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/personname/">人名识别</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/component/">基础组件</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/">感知机分词器</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/">核心概念</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/customdict/">用户自定义词典</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

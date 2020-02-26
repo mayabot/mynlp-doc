@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Mynlp文档</title>
+<meta name="description" content="">
+<meta name="generator" content="Hugo 0.64.1" />
+<link href="https://mayabot.github.io/mynlp-doc/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://mayabot.github.io/mynlp-doc/mynlp/lexer/">
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/theme.min.css">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://mayabot.github.io/mynlp-doc/css/chroma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="https://mayabot.github.io/mynlp-doc/js/bundle.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-388690-17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-388690-17');
+</script>
+<style>
+:root {--custom-font-color: #ededed;--custom-background-color: #142850;font-family: PingFangSC, "helvetica neue", "hiragino sans gb", arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+
+}
+
+:root {
+    color: #011638;
+}
+.chroma {
+  font-size: 80%;
+  margin: 5px 5px;
+  padding: 10px 8px;
+  background-color: #404040;
+}
+header h1{
+    font-size: 35px;
+}
+.sidebar a {
+    font-size: 110%;
+    color: #2e7eb3;
+}
+.sidebar{
+    flex: 0 0 20%;
+}
+
+.sidebar a {
+    color: #27496d;
+}
+
+.sidebar li {
+    margin: 0px 3px;
+}
+.sub-menu a {
+    font-size: 95%;
+    color: #1e0010;
+}
+  .sidebar .active>a{
+    font-weight: bolder;
+  }
+
+table,.highlight{
+    width: 80%;
+}
+
+</style>
+
+
+<style>
+
+    .chroma { background-color: #ffffff } .chroma .err { color: #a61717; background-color: #e3d2d2 } .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; } .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; } .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 } .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f } .chroma .k { color: #000000; font-weight: bold } .chroma .kc { color: #000000; font-weight: bold } .chroma .kd { color: #000000; font-weight: bold } .chroma .kn { color: #000000; font-weight: bold } .chroma .kp { color: #000000; font-weight: bold } .chroma .kr { color: #000000; font-weight: bold } .chroma .kt { color: #445588; font-weight: bold } .chroma .na { color: #008080 } .chroma .nb { color: #0086b3 } .chroma .bp { color: #999999 } .chroma .nc { color: #445588; font-weight: bold } .chroma .no { color: #008080 } .chroma .nd { color: #3c5d5d; font-weight: bold } .chroma .ni { color: #800080 } .chroma .ne { color: #990000; font-weight: bold } .chroma .nf { color: #990000; font-weight: bold } .chroma .nl { color: #990000; font-weight: bold } .chroma .nn { color: #555555 } .chroma .nt { color: #000080 } .chroma .nv { color: #008080 } .chroma .vc { color: #008080 } .chroma .vg { color: #008080 } .chroma .vi { color: #008080 } .chroma .s { color: #dd1144 } .chroma .sa { color: #dd1144 } .chroma .sb { color: #dd1144 } .chroma .sc { color: #dd1144 } .chroma .dl { color: #dd1144 } .chroma .sd { color: #dd1144 } .chroma .s2 { color: #dd1144 } .chroma .se { color: #dd1144 } .chroma .sh { color: #dd1144 } .chroma .si { color: #dd1144 } .chroma .sx { color: #dd1144 } .chroma .sr { color: #009926 } .chroma .s1 { color: #dd1144 } .chroma .ss { color: #990073 } .chroma .m { color: #009999 } .chroma .mb { color: #009999 } .chroma .mf { color: #009999 } .chroma .mh { color: #009999 } .chroma .mi { color: #009999 } .chroma .il { color: #009999 } .chroma .mo { color: #009999 } .chroma .o { color: #000000; font-weight: bold } .chroma .ow { color: #000000; font-weight: bold } .chroma .c { color: #999988; font-style: italic } .chroma .ch { color: #999988; font-style: italic } .chroma .cm { color: #999988; font-style: italic } .chroma .c1 { color: #999988; font-style: italic } .chroma .cs { color: #999999; font-weight: bold; font-style: italic } .chroma .cp { color: #999999; font-weight: bold; font-style: italic } .chroma .cpf { color: #999999; font-weight: bold; font-style: italic } .chroma .gd { color: #000000; background-color: #ffdddd } .chroma .ge { color: #000000; font-style: italic } .chroma .gr { color: #aa0000 } .chroma .gh { color: #999999 } .chroma .gi { color: #000000; background-color: #ddffdd } .chroma .go { color: #888888 } .chroma .gp { color: #555555 } .chroma .gs { font-weight: bold } .chroma .gu { color: #aaaaaa } .chroma .gt { color: #aa0000 } .chroma .gl { text-decoration: underline } .chroma .w { color: #bbbbbb }
+    .chroma {
+        color: inherit;
+        background-color: #ededed;
+    }
+</style><meta property="og:title" content="" />
+<meta property="og:description" content="Lexer 词法分析器 架构设计 分词算法：
+ 基础分词算法：  核心词典 &#43; 二元语言模型 感知机分词 原子分词： - 日期识别 - 包含各种常见日期描述 - 数字识别 - 整数 - 浮点数 - 负数 - 中文数字 - 英文单词 - 连接符号 - 数量词   功能：  自定义词典 分词纠错 词性分析 子词二次切分 正则表达式 人名识别 NER命名实体识别 索引分词模式    在ansj、hanlp一个特定分词器的实现通常是由一个固定的Class实现，比如StandardTokenizer、NLPTokenizer等， 每个分词器可以控制开关去开启特性。
+这种实现方式的缺点在于：
+ 代码重复 代码重用复杂 不灵活  比如：融合感知机分词和原子分词 融合感知机分词和分词纠错   自定义扩展困难  比如： 每个分词器实例采用不同的自定义词典 扩展自定义分词规则插件 扩展原子分词模式 替换新的NER分词算法 从数据库加载自定义词典   处理规则分词和基础分词算法直接冲突  本着开闭原则，Mynlp采用面向接口、Pipeline &#43; WordNet、Path数据结构，把各个功能串联起来， 按需使用Builder模式构建个性化分词器实例。 比如hanlp里面的急速分词，在这里你可以构建基于核心词典、关闭其他特性、替换最优路径选择算法，获得 自定义Lexer实例，而无需创建一个具体的Class。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mayabot.github.io/mynlp-doc/mynlp/lexer/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Lexer 词法分析器 架构设计 分词算法：
+ 基础分词算法：  核心词典 &#43; 二元语言模型 感知机分词 原子分词： - 日期识别 - 包含各种常见日期描述 - 数字识别 - 整数 - 浮点数 - 负数 - 中文数字 - 英文单词 - 连接符号 - 数量词   功能：  自定义词典 分词纠错 词性分析 子词二次切分 正则表达式 人名识别 NER命名实体识别 索引分词模式    在ansj、hanlp一个特定分词器的实现通常是由一个固定的Class实现，比如StandardTokenizer、NLPTokenizer等， 每个分词器可以控制开关去开启特性。
+这种实现方式的缺点在于：
+ 代码重复 代码重用复杂 不灵活  比如：融合感知机分词和原子分词 融合感知机分词和分词纠错   自定义扩展困难  比如： 每个分词器实例采用不同的自定义词典 扩展自定义分词规则插件 扩展原子分词模式 替换新的NER分词算法 从数据库加载自定义词典   处理规则分词和基础分词算法直接冲突  本着开闭原则，Mynlp采用面向接口、Pipeline &#43; WordNet、Path数据结构，把各个功能串联起来， 按需使用Builder模式构建个性化分词器实例。 比如hanlp里面的急速分词，在这里你可以构建基于核心词典、关闭其他特性、替换最优路径选择算法，获得 自定义Lexer实例，而无需创建一个具体的Class。"/>
+<meta itemprop="name" content="">
+<meta itemprop="description" content="Lexer 词法分析器 架构设计 分词算法：
+ 基础分词算法：  核心词典 &#43; 二元语言模型 感知机分词 原子分词： - 日期识别 - 包含各种常见日期描述 - 数字识别 - 整数 - 浮点数 - 负数 - 中文数字 - 英文单词 - 连接符号 - 数量词   功能：  自定义词典 分词纠错 词性分析 子词二次切分 正则表达式 人名识别 NER命名实体识别 索引分词模式    在ansj、hanlp一个特定分词器的实现通常是由一个固定的Class实现，比如StandardTokenizer、NLPTokenizer等， 每个分词器可以控制开关去开启特性。
+这种实现方式的缺点在于：
+ 代码重复 代码重用复杂 不灵活  比如：融合感知机分词和原子分词 融合感知机分词和分词纠错   自定义扩展困难  比如： 每个分词器实例采用不同的自定义词典 扩展自定义分词规则插件 扩展原子分词模式 替换新的NER分词算法 从数据库加载自定义词典   处理规则分词和基础分词算法直接冲突  本着开闭原则，Mynlp采用面向接口、Pipeline &#43; WordNet、Path数据结构，把各个功能串联起来， 按需使用Builder模式构建个性化分词器实例。 比如hanlp里面的急速分词，在这里你可以构建基于核心词典、关闭其他特性、替换最优路径选择算法，获得 自定义Lexer实例，而无需创建一个具体的Class。">
+
+<meta itemprop="wordCount" content="124">
+
+
+
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1><i class="fab fa-meetup"></i> Mynlp文档</h1>
+
+ <span class="version"> &nbsp;&nbsp; Last Version 3.1.0</span>
+<a href="https://github.com/mayabot/mynlp" class="github"><i class="fab fa-github"></i></a>
+</header>
+<div class="global-menu">
+<nav>
+<ul>
+<li><a href="/mynlp-doc/">Mynlp文档</a></li>
+<li><a href="/mynlp-doc/demo">在线演示</a></li>
+<li><a href="http://blog.mayabot.com">博客</a></li></ul>
+</nav>
+</div>
+<div class="content-container">
+<main><h1></h1>
+<h1 id="lexer-词法分析器">Lexer 词法分析器</h1>
+<h2 id="架构设计">架构设计</h2>
+<p>分词算法：</p>
+<ul>
+<li>基础分词算法：
+<ul>
+<li>核心词典 + 二元语言模型</li>
+<li>感知机分词</li>
+<li>原子分词：
+- 日期识别
+- 包含各种常见日期描述
+- 数字识别
+- 整数
+- 浮点数
+- 负数
+- 中文数字
+- 英文单词
+- 连接符号
+- 数量词</li>
+</ul>
+</li>
+<li>功能：
+<ul>
+<li>自定义词典</li>
+<li>分词纠错</li>
+<li>词性分析</li>
+<li>子词二次切分</li>
+<li>正则表达式</li>
+<li>人名识别</li>
+<li>NER命名实体识别</li>
+<li>索引分词模式</li>
+</ul>
+</li>
+</ul>
+<p>在ansj、hanlp一个特定分词器的实现通常是由一个固定的Class实现，比如<code>StandardTokenizer</code>、<code>NLPTokenizer</code>等，
+每个分词器可以控制开关去开启特性。</p>
+<p>这种实现方式的缺点在于：</p>
+<ul>
+<li>代码重复</li>
+<li>代码重用复杂</li>
+<li>不灵活
+<ul>
+<li>比如：融合感知机分词和原子分词</li>
+<li>融合感知机分词和分词纠错</li>
+</ul>
+</li>
+<li>自定义扩展困难
+<ul>
+<li>比如： 每个分词器实例采用不同的自定义词典</li>
+<li>扩展自定义分词规则插件</li>
+<li>扩展原子分词模式</li>
+<li>替换新的NER分词算法</li>
+<li>从数据库加载自定义词典</li>
+</ul>
+</li>
+<li>处理规则分词和基础分词算法直接冲突</li>
+</ul>
+<p>本着开闭原则，Mynlp采用面向接口、Pipeline + WordNet、Path数据结构，把各个功能串联起来，
+按需使用Builder模式构建个性化分词器实例。
+比如hanlp里面的急速分词，在这里你可以构建基于核心词典、关闭其他特性、替换最优路径选择算法，获得
+自定义Lexer实例，而无需创建一个具体的Class。</p>
+<p>换句话说，每个模块都关注自己的算法实现，具体用户可以自由创建、组合、自定义分词器实例。也可以
+升级、替换、扩展其中某个部分的接口实现，你可以实现一个全新的基础分词算法，就自动获得自定义扩展、纠错、NER等功能。</p>
+<h2 id="lexer">Lexer</h2>
+<p><code>Lexer</code>是词法分析器接口，对一段文字进行词法分析计算。</p>
+<p>类<code>PipelineLexer</code>是Lexer的默认实现，<code>FluentLexerBuilder</code>是快捷方便的构建器。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">Lexers</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">basic</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">core</span><span class="o">(</span><span class="o">)</span>
+        <span class="c1">//.basic().cws()
+</span><span class="c1"></span>        <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withNer</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">plugin</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><h3 id="pipelinelexer">PipelineLexer</h3>
+<p>PipelineLexer结构和计算过程非常简单，它统一了分词计算过程和步骤。</p>
+<p>步骤：</p>
+<ol>
+<li>对输入的String，构建Wordnet</li>
+<li>调用WordSplitAlgorithm填充Wordnet</li>
+<li>调用BestPathAlgorithm选择一个WordPath</li>
+<li>按顺序调用WordpathProcessor处理WordPath</li>
+<li>WordTermCollector读取WordPath和Wordnet信息，输出分析结果</li>
+</ol>
+<p><img src="images/mynlp-pipeline.png" alt="Pipeline"></p>
+<table>
+<thead>
+<tr>
+<th>组件接口</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WordSplitAlgorithm</td>
+<td>基础分词算法</td>
+</tr>
+<tr>
+<td>WordpathProcessor</td>
+<td>对已经确定的一条分词路径进行处理的逻辑</td>
+</tr>
+<tr>
+<td>BestPathAlgorithm</td>
+<td>从Wordnet中选择一条最优路径算法</td>
+</tr>
+<tr>
+<td>WordTermCollector</td>
+<td>结果收集器，从Wordnet和WordPath中提取分词结果。</td>
+</tr>
+</tbody>
+</table>
+<p><em><a href="wordnet">Wordnet和WordPath数据结构</a></em></p>
+<h2 id="lexerreader">LexerReader</h2>
+<p>Lexer是面向String的接口，处理长度有限的输入。在对长篇文章进行词法分析时，会有内存和性能问题。</p>
+<p>LexerReader是面向Reader的处理接口，同时也提供了停用词过滤器、标点过滤等功能。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">
+<span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">Lexers</span><span class="o">.</span><span class="na">core</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">LexerReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">lexer</span><span class="o">.</span><span class="na">reader</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="c1">// LexerReader reader = lexer.filterReader(true,true);  // 开启过滤
+</span><span class="c1"></span>
+<span class="n">WordTermSequence</span> <span class="n">seq</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">scan</span><span class="o">(</span><span class="k">new</span> <span class="n">StringReader</span><span class="o">(</span><span class="s">&#34;小明送给张贺年老师一张贺年卡&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">seq</span><span class="o">.</span><span class="na">iterator</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">seq</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">seq</span><span class="o">.</span><span class="na">toSentence</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">seq</span><span class="o">.</span><span class="na">toWordSequence</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>LexerReader把reader一段一段读进来，逐步使用Lexer进行分词计算。<code>WordTermSequence</code>是一个
+流式计算接口，一边迭代一边计算，这样就没有内存溢出问题。</p>
+<div class="edit-meta">
+
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/mynlp/index-seg/" title=""><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - </a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/" title="">Next -  <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
+</footer>
+</main><div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/">首页</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/">起步</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
+</ul>
+  
+</li>
+
+<li class="parent"><a href="https://mayabot.github.io/mynlp-doc/mynlp/">分词</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">基本用法</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/pos/">词性标注</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/resources/">资源加载</a></li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/">结构化感知机</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron/example/">拼音流切分示例</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/">处方</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/%E5%A4%84%E6%96%B9/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E8%AF%8D%E7%B2%92%E5%BA%A6/">自定义分词粒度</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/correction/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/index-seg/"></a></li>
+<li class="active"><a href="https://mayabot.github.io/mynlp-doc/mynlp/lexer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/ner/"></a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/">AtomSplitAlgorithm</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/core/">Core分词</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/wordnet/">Wordnet和Wordpath</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/personname/">人名识别</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/component/">基础组件</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/">感知机分词器</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/">核心概念</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/mynlp/customdict/">用户自定义词典</a></li>
+</ul>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/fasttext/">Fasttext</a>
+  
+</li>
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/">功能模块</a>
+  
+<ul class="sub-menu">
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/">文本分类</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/classification/hotel/">酒店评论分类示例</a></li>
+</ul>
+  
+</li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/pinyin/">拼音转换</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/summary/">文本摘要</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/modules/transform/">繁简体转换</a></li>
+</ul>
+  
+</li>
+
+
+
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/">其他</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/log/">日志服务</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/others/resource-loader/">资源加载器</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

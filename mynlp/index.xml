@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分词 on Mynlp文档</title>
+    <link>https://mayabot.github.io/mynlp-doc/mynlp/</link>
+    <description>Recent content in 分词 on Mynlp文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://mayabot.github.io/mynlp-doc/mynlp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>基本用法</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
+      <description>mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-segment&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice</description>
+    </item>
+    
+    <item>
+      <title>词性标注</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/pos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/pos/</guid>
+      <description>提醒 词性标注API包含在mynlp-segment.jar中。 mynlp词性分词使用的是感知机标注。 这样设计的优点在于： 与核心词典解耦 未登录</description>
+    </item>
+    
+    <item>
+      <title>资源加载</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/resources/</guid>
+      <description>资源加载 资源文件被独立发布到group=com.mayabot.mynlp.resource下。 Name(artifactId) Version 尺寸 desc 默认导入 mynlp-resource-coredict 1.0.0 19.1M 核心词典 是 mynlp-resource-pos 1.0.0 18.4M 词性</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/correction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/correction/</guid>
+      <description>分词纠错 再完美的模型或词典，总会有出错的时候。
+在部分业务系统中，分词结果错误是严重的，所以需要一个可以控制的方法，来控制这一切。
+目前该功能只在企业版中提供，这里给大家自由实现的一个思路。
+实现WordpathProcessor，在最后对路径上的词进行调整。
+找出需要修复的片段，然后调用wordpath.combine方法重新对子部分进行切分。
+参考自定义分词粒度</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/index-seg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/index-seg/</guid>
+      <description>索引分词 mynlp中没有专门的索引分词器，是在WordTermCollector中实现这个功能的。
+Lexer mynlpTokenizer = Lexers. coreBuilder() .collector().indexPickup().done() .build(); </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/lexer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/lexer/</guid>
+      <description>Lexer 词法分析器 架构设计 分词算法：
+ 基础分词算法：  核心词典 + 二元语言模型 感知机分词 原子分词： - 日期识别 - 包含各种常见日期描述 - 数字识别 - 整数 - 浮点数 - 负数 - 中文数字 - 英文单词 - 连接符号 - 数量词   功能：  自定义词典 分词纠错 词性分析 子词二次切分 正则表达式 人名识别 NER命名实体识别 索引分词模式    在ansj、hanlp一个特定分词器的实现通常是由一个固定的Class实现，比如StandardTokenizer、NLPTokenizer等， 每个分词器可以控制开关去开启特性。
+这种实现方式的缺点在于：
+ 代码重复 代码重用复杂 不灵活  比如：融合感知机分词和原子分词 融合感知机分词和分词纠错   自定义扩展困难  比如： 每个分词器实例采用不同的自定义词典 扩展自定义分词规则插件 扩展原子分词模式 替换新的NER分词算法 从数据库加载自定义词典   处理规则分词和基础分词算法直接冲突  本着开闭原则，Mynlp采用面向接口、Pipeline + WordNet、Path数据结构，把各个功能串联起来， 按需使用Builder模式构建个性化分词器实例。 比如hanlp里面的急速分词，在这里你可以构建基于核心词典、关闭其他特性、替换最优路径选择算法，获得 自定义Lexer实例，而无需创建一个具体的Class。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/mynlpanalyzer/</guid>
+      <description>MynlpAnalyzer MynlpAnalyzer面向Reader的处理器，同时也提供了过滤器等功能。
+MynlpAnalyzers提供了常用的构建方法：
+   方法 描述     standard(MynlpTokenizer tokenizer) 提供停用词、标点符号过滤   base(MynlpTokenizer tokenizer) 什么都不过滤   noPunctuation(MynlpTokenizer tokenizer) 只是排除标点符号    MynlpAnalyzer中内置一个分段器，从Reader读取字符序列，然后切分为一段一段的文本。 再把这些文本丢给MynlpTokenizer去做实际的分词处理。
+MynlpAnalyzer可以返回Iterable或者Stream对象，你可以进一步处理，注意的是， 这里Iterable或者Stream是延迟计算的，并没有一次性把Reader中所有的文字全部分词。
+创建自定义MynlpAnalyzer实现 只需继承BaseMynlpAnalyzer，实现warp方法即可。
+public class YourCustomAnalyzer extends BaseMynlpAnalyzer { public StandardMynlpAnalyzer(MynlpTokenizer tokenizer) { super(tokenizer); } public StandardMynlpAnalyzer() { this(MynlpTokenizers.coreTokenizer()); } @Override protected WordTermGenerator warp(WordTermGenerator base) { base = new PunctuationFilter(base); base = new StopwordFilter(base); return base; } } 比如StopwordFilter中默认使用了内置的停用词词典，你可能希望使用自己的，</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/ner/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/ner/</guid>
+      <description>地名和组织机构命名实体 同样也是使用感知机实现。
+PerceptronNerService nameService = Mynlps.instanceOf(PerceptronNerService.class) PerceptronNerService的输入是分词结果和词性分析结构。
+安装 builder.withNer()
+模型训练 在PKU 98 + cncorpus 两个数据集训练，包含了NT NS的训练。 把数据进行随机混合，选择%5的数据作为测试集。
+Sample Size 37242
+单线程训练。迭代130轮
+#ITER 130/200 train use 1458 ms NER	P	R	F1 avg.	91.22	90.45	90.83 ns	85.09	81.31	83.16 nt	91.92	91.53	91.73 在NS地名识别 F1 83.16 在NT组织结构识别 F1 91.73</description>
+    </item>
+    
+    <item>
+      <title>AtomSplitAlgorithm</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/atomsplitalgorithm/</guid>
+      <description>AtomSplitAlgorithm 这个基于规则的分词算法，是对CWS和CORE的补充。在Core和Cws的Pipeline中都默认添加了。 特长是处理固定格式的构词逻辑。At</description>
+    </item>
+    
+    <item>
+      <title>Core分词</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/core/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/core/</guid>
+      <description>Core分词 Core实际上词典+二元语言模型+viterbi的一套成熟的、高效、分词歧义的基础分词算法。 Lexers.core() 创建默认开启词性、人名识别的Lex</description>
+    </item>
+    
+    <item>
+      <title>Wordnet和Wordpath</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/wordnet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/wordnet/</guid>
+      <description>Wordnet和Wordpath Wordnet 中文分词之所以复杂，根本原因在于存在多种切分可能性，算法需要选择一个最佳的切分路径。比如&amp;quot;商品和</description>
+    </item>
+    
+    <item>
+      <title>人名识别</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/personname/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/personname/</guid>
+      <description>人名识别 底层采用感知机实现，对模型进行了优化，最终F1达94.91，如果剔除古汉语人名的影响，F1可以更高。 这里的人名识别是基于字符输入的，</description>
+    </item>
+    
+    <item>
+      <title>基础组件</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/component/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/component/</guid>
+      <description>CharNormalize 接口定义如下： interface CharNormalize { /** * 对char数组里面的字符进行规范化操作，常见的有最小化和宽体字符处理 * @param text */ void normal(char[] text); } MynlpTokenizer处</description>
+    </item>
+    
+    <item>
+      <title>感知机分词器</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/perceptron-seg/</guid>
+      <description>感知机分词器 感知机分词是基于字符序列标注的，mynlp提供了一个基于语料库字数7000万训练得到的模型。压缩后模型大小65M。 运行时占内存1</description>
+    </item>
+    
+    <item>
+      <title>核心概念</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/coreconcept/</guid>
+      <description>在涉及具体分词算法之前，mynlp先进行了接口抽象，主要目的是让分词逻辑组件化、插件化。 基础接口介绍 接口 描述 CharNormalize 字符规则化 MynlpAnalyzer 面向Reader的</description>
+    </item>
+    
+    <item>
+      <title>用户自定义词典</title>
+      <link>https://mayabot.github.io/mynlp-doc/mynlp/customdict/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mayabot.github.io/mynlp-doc/mynlp/customdict/</guid>
+      <description>资源文件 默认mynlp-segment没有导入资源文件。 compile &amp;#39;com.mayabot.mynlp.resource:mynlp-resource-custom:1.0.0&amp;#39; MAVEN &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.mayabot.mynlp.resource&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mynlp-resource-custom&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.0.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 使用 Lexers.coreBuilder() .withCustomDictionary() withCustomDictionary方法默认会安装自定义</description>
+    </item>
+    
+  </channel>
+</rss>
