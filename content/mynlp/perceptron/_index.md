@@ -1,11 +1,9 @@
 ---
-title: "感知机"
+title: "结构化感知机"
 draft: false
 weight: 6
 description: "平均感知机和结构化感知机"
 ---
-
-# 感知机
 
 感知机参考[《基于结构化平均感知机的分词器Java实现》](http://www.hankcs.com/nlp/segment/implementation-of-word-segmentation-device-java-based-on-structured-average-perceptron.html)
 

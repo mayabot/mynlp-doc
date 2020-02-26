@@ -14,10 +14,6 @@ mynlp是一个开源高性能、模块化、可扩展的中文NLP工具包。
 - 多场景
 - 柔性API
 
-
-## Getting Started
-只需要导入maven依赖，无需配置和额外资源下载。
-
 ### Requirements
 您需要 JAVA1.8+ 运行环境
 

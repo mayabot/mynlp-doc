@@ -1,6 +1,5 @@
 ---
-title: "词法分析"
+title: "分词"
 draft: false
 weight: 2
-
 ---

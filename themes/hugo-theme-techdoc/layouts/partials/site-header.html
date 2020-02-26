@@ -1,7 +1,7 @@
 <header>
-<h1>{{ .Site.Title }}</h1>
+<h1><i class="fab fa-meetup"></i> {{ .Site.Title }}</h1>
 {{ with .Site.Params.version }}
- <span class="version">Version {{ . }}</span>
+ <span class="version"> &nbsp;&nbsp; Last Version {{ . }}</span>
 {{end}}
 {{- with .Site.Params.github_repository -}}
 <a href="{{ . }}" class="github"><i class="fab fa-github"></i></a>
