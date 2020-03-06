@@ -175,7 +175,7 @@ System.out.println(PinyinSplits.split("nizhidaowozaishuoshenmema"));
 <dependency>
   <groupId>com.mayabot.mynlp</groupId>
   <artifactId>fastText4j</artifactId>
-  <version>{{version}}</version>
+  <version>{{<version>}} </version>
 </dependency>
 ```
 
