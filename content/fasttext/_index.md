@@ -3,25 +3,13 @@ title: "Fasttext"
 draft: false
 weight: 3
 description: "Fasttext for java"
+TableOfContents: true
 ---
-
-FastText4j implementing FastText with Kotlin&Java.
-[Fasttext](https://github.com/facebookresearch/fastText/) is a library for text representation and classification by facebookresearch.
 
 FastText4j是java&kotlin开发的fasttext算法库。[Fasttext](https://github.com/facebookresearch/fastText/) 是由facebookresearch开发的一个文本分类和词向量的库。
 
 代码迁移至Mynlp项目 [https://github.com/mayabot/mynlp/tree/master/fasttext](https://github.com/mayabot/mynlp/tree/master/fasttext) 。
 
-New code move to Mynlp project [https://github.com/mayabot/mynlp/tree/master/fasttext](https://github.com/mayabot/mynlp/tree/master/fasttext)
-   
-Features:
-
- * Implementing with java(kotlin)
- * Well-designed API
- * Compatible with original C++ model file (include quantizer compression model)
- * Provides train、test etc. api (almost the same performance)
- * Support for java file formats( can read file use mmap),read big model file with less memory
- 
 Features:
 
  * 100%由kotlin&java实现
@@ -43,7 +31,7 @@ compile 'com.mayabot.mynlp:fastText4j:{{version}}'
 <dependency>
   <groupId>com.mayabot.mynlp</groupId>
   <artifactId>fastText4j</artifactId>
-  <version>3.1.0</version>
+  <version>{{version}}</version>
 </dependency>
 ```
 
@@ -77,8 +65,6 @@ FastText model = FastText.trainSupervised(trainFile, inputArgs);
 - dim 向量维度
 - epoch 迭代次数
 训练数据格式:
-
-where train.txt is a text file containing a training sentence per line along with the labels. By default, we assume that labels are words that are prefixed by the string __label__. This will output two files: model.bin and model.vec. Once the model was trained, you can evaluate it by computing the precision and recall at k (P@k and R@k) on a test set using:
 
 训练数据是个纯文本文件，每一行一条数据，词之间使用空格分开，每一行必须包含至少一个label标签。默认
 情况下，是一个带`__label__`前缀的字符串。
