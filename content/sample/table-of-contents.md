@@ -10,9 +10,7 @@ TableOfContents: true
 {{% panel status="primary" title="Note" icon="far fa-lightbulb" %}}
 The `TableOfContents` field set to `true` in your content’s front matter will render a table of contents.
 
-```
-TableOfContents: true
-```
+
 
 Setting the built-in .TableOfContents variables can configure what heading levels you want to include in TOC. See [the built-in .TableOfContents variables settings](https://gohugo.io/getting-started/configuration-markup/#table-of-contents)
 

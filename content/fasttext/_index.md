@@ -35,7 +35,7 @@ Features:
 
 ### Gradle
 ```
-compile 'com.mayabot.mynlp:fastText4j:3.1.0'
+compile 'com.mayabot.mynlp:fastText4j:{{version}}'
 ```
 
 ### Maven
