@@ -62,7 +62,7 @@ header h1{
   }
 
 table,.highlight{
-    width: 80%;
+    width: 90%;
 }
 
 </style>
@@ -100,74 +100,54 @@ table,.highlight{
 </nav>
 </div>
 <div class="content-container">
-<main><p>mynlp是一个开源高性能、模块化、可扩展的中文NLP工具包。</p>
-<h3 id="设计目标">设计目标：</h3>
+<main><h1 id="mynlp-高性能可扩展的中文nlp工具包">Mynlp: 高性能、可扩展的中文NLP工具包</h1>
+<h2 id="功能与特点">功能与特点：</h2>
 <ul>
-<li>企业级</li>
-<li>高性能</li>
-<li>模块化</li>
-<li>可扩展</li>
-<li>多场景</li>
-<li>柔性API</li>
+<li>中文分词
+<ul>
+<li>感知机分词</li>
+<li>Core：二元语言模型&amp;词典分词</li>
 </ul>
-<h3 id="requirements">Requirements</h3>
-<p>您需要 JAVA1.8+ 运行环境</p>
-<h3 id="installation">Installation</h3>
-<p>mynlp多个功能被划分在不同的模块中，下面演示分词模块：</p>
+</li>
+<li>词性标注</li>
+<li>命名实体识别（人名、地名、组织机构名）</li>
+<li>fastText（100% kotlin实现）</li>
+<li>文本分类</li>
+<li>新词发现</li>
+<li>拼音转换&amp;切分</li>
+<li>简繁体转换</li>
+<li>Elasticsearch&amp;Lucene插件支持</li>
+<li>支持用户自主训练模型</li>
+<li>柔性API &mdash; 自定义&amp;插件机制、支持各种业务场景</li>
+<li>开发语言
+<ul>
+<li>JDK 1.8+</li>
+<li>kotlin</li>
+<li>java</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装">安装</h2>
 <p>GRADLE</p>
-<pre><code>compile 'com.mayabot.mynlp:mynlp-segment:3.0.1'
-</code></pre><p>或者MAVEN</p>
+<div class="highlight"><pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">compile</span> <span class="s1">&#39;com.mayabot.mynlp:mynlp:3.1.0&#39;</span>
+</code></pre></div><p>MAVEN</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-segment<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.0.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div><table>
-<thead>
-<tr>
-<th>模块（artifactId）</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mynlp-core</td>
-<td>基础功能 Guice、logger、资源、基础数据结构和算法</td>
-</tr>
-<tr>
-<td>mynlp-perceptron</td>
-<td>通用序列标注感知机</td>
-</tr>
-<tr>
-<td>mynlp-segment</td>
-<td>分词</td>
-</tr>
-<tr>
-<td>mynlp-classification</td>
-<td>文本分类</td>
-</tr>
-<tr>
-<td>mynlp-lucene</td>
-<td>lucene 分析器接口实现</td>
-</tr>
-<tr>
-<td>mynlp-pinyin</td>
-<td>文字转拼音</td>
-</tr>
-<tr>
-<td>mynlp-summary</td>
-<td>文本摘要</td>
-</tr>
-<tr>
-<td>mynlp-transform</td>
-<td>繁简体互转</td>
-</tr>
-</tbody>
-</table>
-<h3 id="中文分词示例">中文分词示例</h3>
-<p>Kotlin:</p>
-<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="n">println</span><span class="p">(</span><span class="s">&#34;mynlp是mayabot开源的中文NLP工具包。&#34;</span><span class="p">.</span><span class="n">lexer</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">toList</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-</code></pre></div><p>Java:</p>
+</code></pre></div><blockquote>
+<p>&lsquo;com.mayabot.mynlp:mynlp:3.1.0&rsquo; 中包含主要功能和部分词典资源的依赖。</p>
+<p>其他功能如拼音、fasttext等被独立打包、按需依赖。</p>
+</blockquote>
+<h2 id="功能概览">功能概览</h2>
+<h3 id="词法分析">词法分析</h3>
+<p>词法分析包括分词、词性标注、实体识别等过程。</p>
+<p>主分词算法包括二元语言模型词典分词、感知机分词器。在Pipeline中额外有
+规则切分、词性分析、人名识别、命名实体识别、自定义词典等插件支持。
+Pipeline提供强大的柔性API，你可以方便扩展pipeline中的功能、也可以为之开发
+全新的基础分词算法。使用Pipeline你可以完全自定义一个适合你需求的分词器。</p>
+<h4 id="core分词器">Core分词器</h4>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">Lexers</span><span class="o">.</span><span class="na">coreBuilder</span><span class="o">(</span><span class="o">)</span>      <span class="c1">//core分词构建器
 </span><span class="c1"></span>                     <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>         <span class="c1">//开启词性
 </span><span class="c1"></span>                     <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span>  <span class="c1">//开启人名
@@ -178,130 +158,298 @@ table,.highlight{
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">toList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 </code></pre></div><p>输出：</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[mynlp/x, 是/v, mayabot/x, 开源/v, 的/u, 中文/nz, nlp/x, 工具包/n, 。/w]
-</code></pre></div><h2 id="添加微信公众号加入微信交流群获取最新nlp相关文章和动态">添加微信公众号：加入微信交流群、获取最新NLP相关文章和动态。</h2>
+</code></pre></div><h4 id="感知机分词器">感知机分词器：</h4>
+<p>需要导入模型依赖
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->com.mayabot.mynlp.resource<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mynlp-resource-cws<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->1.0.0<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">Lexers</span>
+                <span class="o">.</span><span class="na">perceptronBuilder</span><span class="o">(</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withNer</span><span class="o">(</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">// or Lexer lexer = Lexers.perceptron(); 返回一个默认的分析器
+</span><span class="c1"></span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lexer</span><span class="o">.</span><span class="na">scan</span><span class="o">(</span><span class="s">&#34;2001年，他还在纽约医学院工作时，在英国学术刊物《自然》上发表一篇论文&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">2001年/t ,/w 他/r 还/d 在/p 纽约医学院/nt 工作/n 时/t ,/w 在/p 英国/ns 学术/n 刊物/n 《/w 自然/d 》/w 上/f 发表/v 一/m 篇/q 论文/n
+</code></pre></div><h4 id="示例pipeline和动态自定义分词">示例Pipeline和动态自定义分词</h4>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MemCustomDictionary</span> <span class="n">dictionary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MemCustomDictionary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">dictionary</span><span class="o">.</span><span class="na">addWord</span><span class="o">(</span><span class="s">&#34;逛吃&#34;</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">//词典生效
+</span><span class="c1"></span><span class="n">dictionary</span><span class="o">.</span><span class="na">rebuild</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">FluentLexerBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">Lexers</span><span class="o">.</span><span class="na">coreBuilder</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withPos</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withPersonName</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        
+<span class="n">builder</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">new</span> <span class="n">CustomDictionaryPlugin</span><span class="o">(</span><span class="n">dictionary</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">Lexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lexer</span><span class="o">.</span><span class="na">scan</span><span class="o">(</span><span class="s">&#34;逛吃行动小组成立&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><h3 id="拼音">拼音</h3>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-pinyin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><h4 id="转换中文到对应的拼音">转换中文到对应的拼音</h4>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">PinyinResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Pinyins</span><span class="o">.</span><span class="na">convert</span><span class="o">(</span><span class="s">&#34;招商银行,推出朝朝盈理财产品&#34;</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asHeadString</span><span class="o">(</span><span class="s">&#34;,&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">// 输出模糊拼音
+</span><span class="c1"></span><span class="n">result</span><span class="o">.</span><span class="na">fuzzy</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">fuzzy</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span><span class="o">.</span><span class="na">asString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">//保留标点
+</span><span class="c1"></span><span class="n">result</span><span class="o">.</span><span class="na">keepPunctuation</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span><span class="o">;</span>
+<span class="c1">//result.keepAlpha(true);
+</span><span class="c1"></span><span class="c1">//result.keepNum(true);
+</span><span class="c1"></span><span class="c1">//result.keepOthers(true);
+</span><span class="c1"></span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">asString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">zhao shang yin hang tui chu chao chao ying li cai chan pin
+z,s,y,h,t,c,c,c,y,l,c,c,p
+zao sang yin han tui cu cao cao yin li cai can pin
+zao sang yin han , tui cu cao cao yin li cai can pin
+</code></pre></div><blockquote>
+<p>其他更多自定义拼音词典等功能请参加具体文档。</p>
+</blockquote>
+<h4 id="拼音流切分">拼音流切分</h4>
+<p>把连续输入的拼音切分出来</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">PinyinSplits</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;nizhidaowozaishuoshenmema&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>输出:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[ni, zhi, dao, wo, zai, shuo, shen, me, ma]
+</code></pre></div><h3 id="fasttext">FastText</h3>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>fastText4j<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>{{version}}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">File</span> <span class="n">trainFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;data/agnews/ag.train&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="n">InputArgs</span> <span class="n">inputArgs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputArgs</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">inputArgs</span><span class="o">.</span><span class="na">setLoss</span><span class="o">(</span><span class="n">LossName</span><span class="o">.</span><span class="na">softmax</span><span class="o">)</span><span class="o">;</span>
+<span class="n">inputArgs</span><span class="o">.</span><span class="na">setLr</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">1</span><span class="o">)</span><span class="o">;</span>
+<span class="n">inputArgs</span><span class="o">.</span><span class="na">setDim</span><span class="o">(</span><span class="n">100</span><span class="o">)</span><span class="o">;</span>
+<span class="n">inputArgs</span><span class="o">.</span><span class="na">setEpoch</span><span class="o">(</span><span class="n">20</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">FastText</span> <span class="n">model</span> <span class="o">=</span> <span class="n">FastText</span><span class="o">.</span><span class="na">trainSupervised</span><span class="o">(</span><span class="n">trainFile</span><span class="o">,</span> <span class="n">inputArgs</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>主要参数说明：</p>
+<ul>
+<li>loss 损失函数
+<ul>
+<li>hs 分层softmax.比完全softmax慢一点。
+分层softmax是完全softmax损失的近似值，它允许有效地训练大量类。
+还请注意，这种损失函数被认为是针对不平衡的label class，即某些label比其他label更多出现在样本。
+如果您的数据集每个label的示例数量均衡，则值得尝试使用负采样损失（-loss ns -neg 100）。</li>
+<li>ns NegativeSamplingLoss 负采样</li>
+<li>softmax default for Supervised model</li>
+<li>ova  one-vs-all 可用于多分类.“OneVsAll” loss function for multi-label classification, which corresponds to the sum of binary cross-entropy computed independently for each label.</li>
+</ul>
+</li>
+<li>lr 学习率learn rate</li>
+<li>dim 向量维度</li>
+<li>epoch 迭代次数</li>
+</ul>
+<blockquote>
+<p>更多功能参加相关文档。</p>
+</blockquote>
+<h3 id="文本分类">文本分类</h3>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-classification<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>mynlp采用fasttext算法提供文本分类功能，你可以训练、评估自己的分类模型。</p>
+<p>训练数据是个纯文本文件，每一行一条数据，词之间使用空格分开，每一行必须包含至少一个label标签。默认
+情况下，是一个带<code>__label__</code>前缀的字符串。</p>
+<blockquote>
+<p>__label__tag1  saints rally to beat 49ers the new orleans saints survived it all hurricane ivan</p>
+<p>__label__积极  这个 商品 很 好 用 。</p>
+</blockquote>
+<p>所以你的训练语料需要提前进行分词预处理。</p>
+<p>在这里查看<a href="https://github.com/mayabot/mynlp/blob/master/modules/mynlp-classification/src/test/java/com/mayabot/mynlp/HotelCommentExampleTrain.java">一个完整的酒店评论的代码示例</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 训练参数
+</span><span class="c1"></span><span class="n">InputArgs</span> <span class="n">trainArgs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputArgs</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">trainArgs</span><span class="o">.</span><span class="na">setLoss</span><span class="o">(</span><span class="n">LossName</span><span class="o">.</span><span class="na">hs</span><span class="o">)</span><span class="o">;</span>
+<span class="n">trainArgs</span><span class="o">.</span><span class="na">setEpoch</span><span class="o">(</span><span class="n">10</span><span class="o">)</span><span class="o">;</span>
+<span class="n">trainArgs</span><span class="o">.</span><span class="na">setDim</span><span class="o">(</span><span class="n">100</span><span class="o">)</span><span class="o">;</span>
+<span class="n">trainArgs</span><span class="o">.</span><span class="na">setLr</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">2</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">//训练一个分类模型
+</span><span class="c1"></span><span class="n">FastText</span> <span class="n">fastText</span> <span class="o">=</span> <span class="n">FastText</span><span class="o">.</span><span class="na">trainSupervised</span><span class="o">(</span><span class="n">trainFile</span><span class="o">,</span> <span class="n">trainArgs</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">//使用乘积量化压缩模型
+</span><span class="c1"></span><span class="n">FastText</span> <span class="n">qFastText</span> <span class="o">=</span> <span class="n">fastText</span><span class="o">.</span><span class="na">quantize</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+
+<span class="c1">//fastText.saveModel(&#34;example.data/hotel.model&#34;);
+</span><span class="c1"></span>
+<span class="c1">//使用测试数据评估模型
+</span><span class="c1"></span><span class="n">fastText</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">testFile</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span><span class="kc">true</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;--------------&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="n">qFastText</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">testFile</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span><span class="kc">true</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Read file build dictionary ...
+Read 0M words
+
+Number of words:  14339
+Number of labels: 2
+Number of wordHash2Id: 19121
+Progress: 100.00% words/sec/thread: Infinity arg.loss: 0.22259
+Train use time 790 ms
+pq 100%
+compute_codes...
+compute_codes success
+F1-Score : 0.915167 Precision : 0.903553 Recall : 0.927083  __label__neg
+F1-Score : 0.919708 Precision : 0.931034 Recall : 0.908654  __label__pos
+N	400
+P@1	0.918
+R@1	0.918
+
+--------------
+
+F1-Score : 0.917526 Precision : 0.908163 Recall : 0.927083  __label__neg
+F1-Score : 0.922330 Precision : 0.931373 Recall : 0.913462  __label__pos
+N	400
+P@1	0.920
+R@1	0.920
+</code></pre></div><h3 id="简繁转换">简繁转换</h3>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-transform<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Simplified2Traditional</span> <span class="n">s2t</span> <span class="o">=</span> <span class="n">TransformService</span><span class="o">.</span><span class="na">simplified2Traditional</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s2t</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="s">&#34;软件和体育的艺术&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+<span class="n">Traditional2Simplified</span> <span class="n">t2s</span> <span class="o">=</span> <span class="n">TransformService</span><span class="o">.</span><span class="na">traditional2Simplified</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t2s</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="s">&#34;軟件和體育的藝術&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">軟件和體育的藝術
+软件和体育的艺术
+</code></pre></div><h3 id="简单文本摘要">简单文本摘要</h3>
+<!-- raw HTML omitted -->
+<p>文本摘要包含了两个简单TextRank的实现。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-summary<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>关键字摘要</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">KeywordSummary</span> <span class="n">keywordSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeywordSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">keywordSummary</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;text&#34;</span><span class="o">,</span><span class="n">10</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>句子摘要</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">SentenceSummary</span> <span class="n">sentenceSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SentenceSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sentenceSummary</span><span class="o">.</span><span class="na">summarySentences</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="n">10</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>KeywordSummary和SentenceSummary内置了默认的分词实现，你可以配置自定义的Lexer对象,参加具体文档。</p>
+<h2 id="功能模块词典模型资源">功能模块、词典&amp;模型资源</h2>
+<h3 id="jar">Jar</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>com.mayabot.mynlp:mynlp:3.1.0</code></td>
+<td>mynlp主要功能和基础算法包</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp:fastText4j:3.1.0</code></td>
+<td>fastText算法包</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp:mynlp-classification:3.1.0</code></td>
+<td>文本分类</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp:mynlp-lucene:3.1.0</code></td>
+<td>lucene 分析器接口实现</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp:mynlp-pinyin:3.1.0</code></td>
+<td>文字转拼音</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp:mynlp-summary:3.1.0</code></td>
+<td>文本摘要</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp:mynlp-transform:3.1.0</code></td>
+<td>繁简体互转</td>
+</tr>
+</tbody>
+</table>
+<h3 id="词典和模型资源">词典和模型资源</h3>
+<p>mynlp中模型和词典文件被封装在jar中，发布到maven中央仓库。你可以使用<code>unzip</code>命令解压查看里面的内容。</p>
+<blockquote>
+<p>由于感知机分词模型太大，所以没有被默认依赖。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Gradle地址</th>
+<th>依赖</th>
+<th>大小</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-coredict:1.0.0</code></td>
+<td>Y</td>
+<td>18.2M</td>
+<td>核心词典（词典和二元语言统计</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-pos:1.0.0</code></td>
+<td>Y</td>
+<td>17.5M</td>
+<td>词性标注模型（感知机模型）</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-ner:1.0.0</code></td>
+<td>Y</td>
+<td>13.4M</td>
+<td>命名实体识别（感知机模型）</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-cws:1.0.0</code></td>
+<td><em>N</em></td>
+<td>62.4M</td>
+<td>感知机分词模型</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-custom:1.0.0</code></td>
+<td><em>N</em></td>
+<td>2.2M</td>
+<td>补充自定义词库</td>
+</tr>
+</tbody>
+</table>
+<div class="panel panel-notice"><div class="panel-header">
+<h3>依赖说明</h3>
+</div><div class="panel-body">
+
+依赖为Y: 表示这些jar资源被`com.mayabot.mynlp:mynlp:3.1.0`自动依赖。<br>
+依赖为N: 如果需要，你可以在maven或者Gradle中引入。 
+
+</div>
+</div>
+
+<h3 id="添加微信公众号加入微信交流群获取最新nlp相关文章和动态">添加微信公众号：加入微信交流群、获取最新NLP相关文章和动态。</h3>
 <p><img src="https://cdn.mayabot.com/mynlp/mayajimi.jpg" alt="weixin"></p>
-<h2 id="包含功能和资源如下">包含功能和资源如下：</h2>
-<ul>
-<li>
-<p>中文分词</p>
-<ul>
-<li>
-<p>CORE分词</p>
-<ul>
-<li>二元语言模型 + viterbi解码算法 + 基础规则（数字、英文、日期..。_</li>
-<li>高性能：速度200万+字/秒(<em>2.6GHz Intel i7</em>)</li>
-</ul>
-</li>
-<li>
-<p>感知机分词</p>
-<p>基于感知机序列标注算法 + 基础规则。_</p>
-</li>
-<li>
-<p>CRF分词</p>
-<p><em>高性能CRF解码器 + 基础规则。</em></p>
-</li>
-<li>
-<p>人名识别</p>
-<p><em>基于感知机实现，高准确率，高性能，自动排除歧义。</em></p>
-</li>
-<li>
-<p>NER命名实体识别</p>
-</li>
-<li>
-<p>自定义功能</p>
-<p><em>自定义词库、分词纠错</em></p>
-</li>
-<li>
-<p>柔性API和PIPELINE设计模式</p>
-<p><em>自由组合和扩展分词逻辑需求</em></p>
-</li>
-</ul>
-</li>
-<li>
-<p>词性标注</p>
-<p><em>基于感知机的词性标注</em></p>
-</li>
-<li>
-<p>拼音转换</p>
-<p><em>文字转拼音，好用的API</em></p>
-</li>
-<li>
-<p>文本分类</p>
-<p><em>基于<a href="https://github.com/mayabot/fastText4j">fastText</a> Java原生实现</em></p>
-</li>
-<li>
-<p>简繁体转换</p>
-</li>
-<li>
-<p>感知机通用接口</p>
-<p><em>提供一个通用的感知机基础API</em></p>
-</li>
-<li>
-<p>文本摘要</p>
-<p><em>简单的文本摘要实现</em></p>
-</li>
-<li>
-<p>基础架构</p>
-<ul>
-<li>基于GUICE的IOC实现可插拔的组件开发</li>
-<li>高性能、易扩展的基础数据结构</li>
-</ul>
-</li>
-<li>
-<p>词典和语料库资源</p>
-<ul>
-<li>二元模型
-<ul>
-<li>二元模型词数量达20万+</li>
-<li>二元接续词配对数量485万+(Hanlp对应资源大概290万+)</li>
-</ul>
-</li>
-<li>感知机模型
-<ul>
-<li>训练语料库字数7000万+</li>
-</ul>
-</li>
-<li>词性标注
-<ul>
-<li>训练语料库字数3000万+</li>
-</ul>
-</li>
-<li>人名识别
-<ul>
-<li>训练语料库字数3000万+</li>
-</ul>
-</li>
-<li>地名、组织机构名
-<ul>
-<li>训练语料库字数3000万+</li>
-</ul>
-</li>
-<li>语料库来源
-<ul>
-<li>公开语料库
-<ul>
-<li>收集的互联网资源</li>
-</ul>
-</li>
-<li>自建语料库
-<ul>
-<li>基础数据为人民日报2014全年内容，通过Hanlp、中科院等多种分词器自动切分对比差异，再经过50人月时间修复、校验
-后获得的分词语料库。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="声明和致谢">声明和致谢</h2>
-<p>早期在使用ansj和hanlp过程中，遇到很多问题无法解决和扩展，mynlp开发之初借鉴了算法实现，通过多次迭代和项目需求驱动实践，逐渐发展为目前自有的架构体系。
-也向HanLP和ansj在中文NLP开源中做出的贡献和努力致敬！</p>
-<p>mynlp项目参考了以下项目：</p>
-<ul>
-<li><a href="https://github.com/hankcs/HanLP">HanLP</a></li>
-<li><a href="https://github.com/NLPchina/ansj_seg">ansj_seg</a></li>
-</ul>
 <nav class="pagination"><a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/" title="起步">Next - 起步 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><div class="edit-meta">
 Last updated on 2017-10-17

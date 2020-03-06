@@ -37,7 +37,7 @@ figure   2 People Sitting With View of Yellow Flowers during Daytime   gist  hig
       
       <guid>https://mayabot.github.io/mynlp-doc/sample/table-of-contents/</guid>
       <description>The TableOfContents field set to true in your content’s front matter will render a table of contents.
-TableOfContents: true Setting the built-in .TableOfContents variables can configure what heading levels you want to include in TOC. See the built-in .TableOfContents variables settings
+Setting the built-in .TableOfContents variables can configure what heading levels you want to include in TOC. See the built-in .TableOfContents variables settings
 Section 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</description>
     </item>
     
