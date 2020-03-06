@@ -65,7 +65,7 @@ enableMissingTranslationPlaceholders = false
 # Global menu section
         [[menu.main]]
     name = "Mynlp文档"
-    url = "/"
+    url = "https://mynlp.mayabot.com/"
     weight = 1
     pre= "<i class='fab fa-github'></i>"
 
