@@ -76,17 +76,17 @@ table,.highlight{
         background-color: #ededed;
     }
 </style><meta property="og:title" content="安装" />
-<meta property="og:description" content="mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;/dependency&gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice" />
+<meta property="og:description" content="最新版本 3.1.0 GRADLE compile &#39;com.mayabot.mynlp:mynlp:3.1.0&#39; MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp&lt;/artifactId&gt; &lt;version&gt;3.1.0&lt;/version&gt; &lt;/dependency&gt; &lsquo;com.mayabot.mynlp:mynlp:3.1.0&rsquo; 中包含主要功能和部分词典资源的依赖。 其他功能如拼音、fasttext等被独立打包、按需依赖。 功能模块、词典&a" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mayabot.github.io/mynlp-doc/getting-started/installation/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="安装"/>
-<meta name="twitter:description" content="mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;/dependency&gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice"/>
+<meta name="twitter:description" content="最新版本 3.1.0 GRADLE compile &#39;com.mayabot.mynlp:mynlp:3.1.0&#39; MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp&lt;/artifactId&gt; &lt;version&gt;3.1.0&lt;/version&gt; &lt;/dependency&gt; &lsquo;com.mayabot.mynlp:mynlp:3.1.0&rsquo; 中包含主要功能和部分词典资源的依赖。 其他功能如拼音、fasttext等被独立打包、按需依赖。 功能模块、词典&a"/>
 <meta itemprop="name" content="安装">
-<meta itemprop="description" content="mynlp多个功能被划分在不同的模块中，下面演示分词模块： GRADLE compile &#39;com.mayabot.mynlp:mynlp-segment:3.0.1&#39; 或者MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;/dependency&gt; 模块（artifactId） 功能 mynlp-core 基础功能 Guice">
+<meta itemprop="description" content="最新版本 3.1.0 GRADLE compile &#39;com.mayabot.mynlp:mynlp:3.1.0&#39; MAVEN &lt;dependency&gt; &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt; &lt;artifactId&gt;mynlp&lt;/artifactId&gt; &lt;version&gt;3.1.0&lt;/version&gt; &lt;/dependency&gt; &lsquo;com.mayabot.mynlp:mynlp:3.1.0&rsquo; 中包含主要功能和部分词典资源的依赖。 其他功能如拼音、fasttext等被独立打包、按需依赖。 功能模块、词典&a">
 
-<meta itemprop="wordCount" content="134">
+<meta itemprop="wordCount" content="400">
 
 
 
@@ -107,61 +107,120 @@ table,.highlight{
 </div>
 <div class="content-container">
 <main><h1>安装</h1>
-<p>mynlp多个功能被划分在不同的模块中，下面演示分词模块：</p>
-<p>GRADLE</p>
-<pre><code>compile 'com.mayabot.mynlp:mynlp-segment:3.0.1'
-</code></pre><p>或者MAVEN</p>
+<p>最新版本 <code>3.1.0</code></p>
+<h4 id="gradle">GRADLE</h4>
+<div class="highlight"><pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">compile</span> <span class="s1">&#39;com.mayabot.mynlp:mynlp:3.1.0&#39;</span>
+</code></pre></div><h4 id="maven">MAVEN</h4>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mayabot.mynlp<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp-segment<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.0.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>mynlp<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div><table>
+</code></pre></div><blockquote>
+<p>&lsquo;com.mayabot.mynlp:mynlp:3.1.0&rsquo; 中包含主要功能和部分词典资源的依赖。
+其他功能如拼音、fasttext等被独立打包、按需依赖。</p>
+</blockquote>
+<h2 id="功能模块词典模型资源">功能模块、词典&amp;模型资源</h2>
+<h3 id="jar">Jar</h3>
+<table>
 <thead>
 <tr>
-<th>模块（artifactId）</th>
-<th>功能</th>
+<th>模块</th>
+<th>功能描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>mynlp-core</td>
-<td>基础功能 Guice、logger、资源、基础数据结构和算法</td>
+<td><code>com.mayabot.mynlp:mynlp:3.1.0</code></td>
+<td>mynlp主要功能和基础算法包</td>
 </tr>
 <tr>
-<td>mynlp-perceptron</td>
-<td>通用序列标注感知机</td>
+<td><code>com.mayabot.mynlp:fastText4j:3.1.0</code></td>
+<td>fastText算法包</td>
 </tr>
 <tr>
-<td>mynlp-segment</td>
-<td>分词</td>
-</tr>
-<tr>
-<td>mynlp-classification</td>
+<td><code>com.mayabot.mynlp:mynlp-classification:3.1.0</code></td>
 <td>文本分类</td>
 </tr>
 <tr>
-<td>mynlp-lucene</td>
+<td><code>com.mayabot.mynlp:mynlp-lucene:3.1.0</code></td>
 <td>lucene 分析器接口实现</td>
 </tr>
 <tr>
-<td>mynlp-pinyin</td>
+<td><code>com.mayabot.mynlp:mynlp-pinyin:3.1.0</code></td>
 <td>文字转拼音</td>
 </tr>
 <tr>
-<td>mynlp-summary</td>
+<td><code>com.mayabot.mynlp:mynlp-summary:3.1.0</code></td>
 <td>文本摘要</td>
 </tr>
 <tr>
-<td>mynlp-transform</td>
+<td><code>com.mayabot.mynlp:mynlp-transform:3.1.0</code></td>
 <td>繁简体互转</td>
 </tr>
 </tbody>
 </table>
+<h3 id="词典和模型资源">词典和模型资源</h3>
+<p>mynlp中模型和词典文件被封装在jar中，发布到maven中央仓库。你可以使用<code>unzip</code>命令解压查看里面的内容。</p>
+<blockquote>
+<p>由于感知机分词模型太大，所以没有被默认依赖。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Gradle地址</th>
+<th>依赖</th>
+<th>大小</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-coredict:1.0.0</code></td>
+<td>Y</td>
+<td>18.2M</td>
+<td>核心词典（词典和二元语言统计</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-pos:1.0.0</code></td>
+<td>Y</td>
+<td>17.5M</td>
+<td>词性标注模型（感知机模型）</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-ner:1.0.0</code></td>
+<td>Y</td>
+<td>13.4M</td>
+<td>命名实体识别（感知机模型）</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-cws:1.0.0</code></td>
+<td><em>N</em></td>
+<td>62.4M</td>
+<td>感知机分词模型</td>
+</tr>
+<tr>
+<td><code>com.mayabot.mynlp.resource:mynlp-resource-custom:1.0.0</code></td>
+<td><em>N</em></td>
+<td>2.2M</td>
+<td>补充自定义词库</td>
+</tr>
+</tbody>
+</table>
+<div class="panel panel-notice"><div class="panel-header">
+<h3>依赖说明</h3>
+</div><div class="panel-body">
+
+依赖为Y: 表示这些jar资源被`com.mayabot.mynlp:mynlp:3.1.0`自动依赖。<br>
+依赖为N: 如果需要，你可以在maven或者Gradle中引入。 
+
+</div>
+</div>
+
 <div class="edit-meta">
 
 <br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/getting-started/" title="起步"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - 起步</a>
-<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/segment/" title="API概览">Next - API概览 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+<a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/modules/" title="功能概览">Next - 功能概览 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
 </footer>
 </main><div class="sidebar">
@@ -174,7 +233,7 @@ table,.highlight{
   
 <ul class="sub-menu">
 <li class="active"><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/modules/">功能概览</a></li>
 </ul>
   
 </li>

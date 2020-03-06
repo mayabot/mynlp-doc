@@ -100,128 +100,13 @@ table,.highlight{
 </nav>
 </div>
 <div class="content-container">
-<main><h1>起步</h1><h1 id="quick-tutorial">Quick Tutorial</h1>
-<h3 id="installation">Installation</h3>
-<p>mynlp由多模块构成，每个模块都发行JAR到maven仓库中（<code>groupId=com.mayabot.mynlp</code>），您可以直接在项目中引用。</p>
-<table>
-<thead>
-<tr>
-<th>模块（artifactId）</th>
-<th>功能描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mynlp-core</td>
-<td>基础功能 Guice、logger、资源、基础数据结构和算法</td>
-</tr>
-<tr>
-<td>mynlp-segment</td>
-<td>中文分词</td>
-</tr>
-<tr>
-<td>mynlp-pinyin</td>
-<td>文字转拼音</td>
-</tr>
-<tr>
-<td>mynlp-transform</td>
-<td>繁简体互转</td>
-</tr>
-<tr>
-<td>mynlp-classification</td>
-<td>文本分类</td>
-</tr>
-<tr>
-<td>mynlp-summary</td>
-<td>文本摘要</td>
-</tr>
-<tr>
-<td>mynlp-perceptron</td>
-<td>感知机</td>
-</tr>
-</tbody>
-</table>
-<p>如使用分词功能，只需要引入:</p>
-<pre><code>    &lt;dependency&gt;
-      &lt;groupId&gt;com.mayabot.mynlp&lt;/groupId&gt;
-      &lt;artifactId&gt;mynlp-segment&lt;/artifactId&gt;
-      &lt;version&gt;2.0.0&lt;/version&gt;
-    &lt;/dependency&gt;
-</code></pre><blockquote>
-<p>version请使用Maven仓库中最新版本</p>
-</blockquote>
-<blockquote>
-<p>如果你比较懒，引入<code>mynlp-all</code>一个JAR包，即可包括分词、拼音、感知机、简繁体这些功能。</p>
-</blockquote>
-<h2 id="分词">分词</h2>
-<h3 id="core分词">Core分词</h3>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpTokenizer</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizers</span><span class="o">.</span><span class="na">coreTokenizer</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="n">Sentence</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;早上好&#34;</span><span class="o">)</span><span class="o">;</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">asWordList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>coreTokenizer返回的是CORE分词器，它以二元语言模型+Viterbi为基础的分词算法，特点是高性能、排除歧义、高度自定义，
-适应大部分场景。</p>
-<p><code>MynlpTokenizer</code>是分词算法的通用接口，它是多线程安全的，相同功能的MynlpTokenizer只需要一个实例即可。
-MynlpTokenizer接口关注的是如何把长度有限的一小段文本进行分词。</p>
-<p>MynlpTokenizer关注对有限长度的字符串进行分词计算，比如一句话分词。</p>
-<p>那么如果需要对打断文本进行分词，那么MynlpTokenizer就不能胜任了，因为它会消耗不确定大的内存。
-<code>MynlpAnalyzer</code>是面向Reader的分词接口，它关注无限长度的文本进行分词，同时提供过过滤器功能（停用词和标点符号）,是对MynlpTokenizer接口的上层包装。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpAnalyzer</span> <span class="n">analyzer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMynlpAnalyzer</span><span class="o">(</span><span class="n">Tokenizers</span><span class="o">.</span><span class="na">coreTokenizer</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-<span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringReader</span><span class="o">(</span><span class="s">&#34;假装这是一个大文本&#34;</span><span class="o">)</span><span class="o">;</span>
-<span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WordTerm</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">reader</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><blockquote>
-<p>MynlpAnalyzer也是线程安全的，相同逻辑单例即可。MynlpAnalyzer返回的Iterable或Stream是延迟计算的。</p>
-</blockquote>
-<h3 id="cws感知机分词">CWS感知机分词</h3>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpTokenizer</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizers</span><span class="o">.</span><span class="na">cwsTokenizer</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="n">Sentence</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;委内瑞拉总统马杜罗表示他支持议会选举提前到今年举行&#34;</span><span class="o">)</span><span class="o">;</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sentence</span><span class="o">.</span><span class="na">asWordList</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>感知机分词器是面向字符序列标注的分词器算法。cwsTokenizer方法返回一个新的感知机分词器实例。</p>
-<p>如你所见和Core分词示例相比，只是Tokenizers构建方法调用不一样，其他的API都保持不变。</p>
-<h3 id="自定义选项">自定义选项</h3>
-<p>Tokenizers.coreTokenizer和cwsTokenizer只是返回一个预定义的分词算法实例。你还可以通过Builder创建自定义选项的分词器。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MynlpTokenizer</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizers</span><span class="o">.</span><span class="na">coreTokenizerBuilder</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">setEnablePOS</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>阅读【中文分词】章节的文档，了解更多高级定制的方法和技巧。</p>
-<h2 id="文本分类">文本分类</h2>
-<p>文本分类使用了Facebook的FastText算法，java版本fasttext实现已经剥离到另一个项目<a href="https://github.com/mayabot/fastText4j">fastText4j</a>。
-这里提供一个开箱即用的分类API，你只需要给出无需预先分词语料即可训练分类模型。</p>
-<p>语料的格式可以是：</p>
-<blockquote>
-<p>__label__pos 一般设施不错其他一般早餐也不错<!-- raw HTML omitted -->
-__label__neg 服务极差价格高地点环境偏房间条件能有一星</p>
-</blockquote>
-<p>其中__label__是分类标签的前缀。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">FastText</span> <span class="n">model</span> <span class="o">=</span> <span class="n">FasttextClassification</span><span class="o">.</span><span class="na">train</span><span class="o">(</span><span class="n">trainFile</span><span class="o">,</span> <span class="n">100</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span><span class="o">;</span>
-<span class="n">model</span><span class="o">.</span><span class="na">saveModel</span><span class="o">(</span><span class="s">&#34;example.data/hotel.model&#34;</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>第一行是训练模型，第二行是保存模型文件，就是这么简单。这里给出的三个参数是向量维度、学习率、epoch。
-你可以通过TrainArgs传递更为复杂的参数给训练器，这些参数和Facebook原版的Fasttext算法一致。</p>
-<p>有了训练模型，我们就可以进行预测了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">FastText</span> <span class="n">model</span> <span class="o">=</span> <span class="n">FastText</span><span class="o">.</span><span class="na">loadModel</span><span class="o">(</span><span class="s">&#34;example.data/hotel.model&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span><span class="o">;</span>
-<span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">FasttextClassification</span><span class="o">.</span><span class="na">predict</span><span class="o">(</span><span class="n">model</span><span class="o">,</span> <span class="s">&#34;两间房只给两条毛巾加一条毛巾要收费5元太过份吧&#34;</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>第一行加载模型，第二行就可以进行预测了。</p>
-<p>Fasttext除了进行文本分类外，另外很大的作用是进行词向量训练。</p>
-<h2 id="拼音">拼音</h2>
-<p>如果你么有自定需求，那么只需如下调用：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">PinyinResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Pinyins</span><span class="o">.</span><span class="na">convert</span><span class="o">(</span><span class="s">&#34;招商银行推出朝朝盈理财产品&#34;</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>PinyinResult是转换结果，你可以通过这对象，返回完整拼写列表、缩写列表、是否归一模糊拼音等结果。
-pinyin模块还支持配置扩展多音词词典文件、动态添加多音词等功能，详见<a href="Pinyin">文字转拼音</a>。</p>
-<h2 id="简繁转换">简繁转换</h2>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Simplified2Traditional</span> <span class="n">s2t</span> <span class="o">=</span> <span class="n">TransformService</span><span class="o">.</span><span class="na">simplified2Traditional</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="n">s2t</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="s">&#34;软件和体育的艺术&#34;</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>繁体转简体</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Traditional2Simplified</span> <span class="n">t2s</span> <span class="o">=</span> <span class="n">TransformService</span><span class="o">.</span><span class="na">traditional2Simplified</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="n">t2s</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="s">&#34;軟件和體育的藝術&#34;</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><h2 id="文本摘要">文本摘要</h2>
-<p>文本摘要包含了两个简单TextRank的实现。</p>
-<p>关键字摘要</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">KeywordSummary</span> <span class="n">keywordSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeywordSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="n">keywordSummary</span><span class="o">.</span><span class="na">keyword</span><span class="o">(</span><span class="s">&#34;text&#34;</span><span class="o">,</span><span class="n">10</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>句子摘要</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">SentenceSummary</span> <span class="n">sentenceSummary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SentenceSummary</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sentenceSummary</span><span class="o">.</span><span class="na">summarySentences</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="n">10</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><p>KeywordSummary和SentenceSummary内置了默认的分词实现，你可以配置自定义的MynlpAnalyzer对象。</p>
+<main><h1>起步</h1><ul>
+<li><a href="installation">安装</a></li>
+<li><a href="modules">功能概览</a></li>
+</ul>
 <div class="edit-meta">
 
-<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp文档首页"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp文档首页</a>
+<br></div><nav class="pagination"><a class="nav nav-prev" href="https://mayabot.github.io/mynlp-doc/" title="Mynlp 高性能、可扩展的中文NLP工具包"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev - Mynlp 高性能、可扩展的中文NLP工具包</a>
 <a class="nav nav-next" href="https://mayabot.github.io/mynlp-doc/getting-started/installation/" title="安装">Next - 安装 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
 </nav><footer><p class="powered">© 2020. Mayabot.com 保留所有权利.
 </footer>
@@ -235,7 +120,7 @@ pinyin模块还支持配置扩展多音词词典文件、动态添加多音词�
   
 <ul class="sub-menu">
 <li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/installation/">安装</a></li>
-<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/segment/">API概览</a></li>
+<li class=""><a href="https://mayabot.github.io/mynlp-doc/getting-started/modules/">功能概览</a></li>
 </ul>
   
 </li>
