@@ -75,7 +75,18 @@ table,.highlight{
         color: inherit;
         background-color: #ededed;
     }
-</style><meta property="og:title" content="" />
+</style>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?fb3d179a7eed12c80f3736a42213bbbc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<meta property="og:title" content="" />
 <meta property="og:description" content="Lexer 词法分析器 架构设计 分词算法：
  基础分词算法：  核心词典 &#43; 二元语言模型 感知机分词 原子分词： - 日期识别 - 包含各种常见日期描述 - 数字识别 - 整数 - 浮点数 - 负数 - 中文数字 - 英文单词 - 连接符号 - 数量词   功能：  自定义词典 分词纠错 词性分析 子词二次切分 正则表达式 人名识别 NER命名实体识别 索引分词模式    在ansj、hanlp一个特定分词器的实现通常是由一个固定的Class实现，比如StandardTokenizer、NLPTokenizer等， 每个分词器可以控制开关去开启特性。
 这种实现方式的缺点在于：

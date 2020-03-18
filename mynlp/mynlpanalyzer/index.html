@@ -75,7 +75,18 @@ table,.highlight{
         color: inherit;
         background-color: #ededed;
     }
-</style><meta property="og:title" content="" />
+</style>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?fb3d179a7eed12c80f3736a42213bbbc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<meta property="og:title" content="" />
 <meta property="og:description" content="MynlpAnalyzer MynlpAnalyzer面向Reader的处理器，同时也提供了过滤器等功能。
 MynlpAnalyzers提供了常用的构建方法：
    方法 描述     standard(MynlpTokenizer tokenizer) 提供停用词、标点符号过滤   base(MynlpTokenizer tokenizer) 什么都不过滤   noPunctuation(MynlpTokenizer tokenizer) 只是排除标点符号    MynlpAnalyzer中内置一个分段器，从Reader读取字符序列，然后切分为一段一段的文本。 再把这些文本丢给MynlpTokenizer去做实际的分词处理。
