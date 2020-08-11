@@ -1,0 +1,16 @@
+= Mynlp技术参考手册
+Jimi <A@ma.com>
+:doctype: book
+:toc: left
+:toc-title: 目录
+:version: 3.1.7
+
+== Mynlp介绍
+
+
+include::started.adoc[]
+
+这是一个断论
+
+include::fasttext.adoc[]
+
